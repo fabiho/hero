@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<f:view>
+    <h:head>
+        <link rel="shortcut icon" type="image/x-icon" href="img/MyHotDog.ico" />
+        <link rel="stylesheet" href="styles.css"/>
+        <title>MyHotDog</title>
+    </h:head>
+    <h:body class="body">
+        <table class = "maintable">
+            <tr>
+                <th>
+                    <img src="img/MyHotDog.png" alt="hotdog-Bild" class="logo"/><h1>MyHotdog</h1>
+                </th>
+            </tr>
+            <h:panelGroup>
+                <tr>
+                   <th><h2>Zutaten</h2></th>
+                   <th><h2>Warenkorb 🛒</h2></th>
+                </tr>
+                <tr>
+                    <th class="columnleft">
+                        <div class="wrapperleft">
+                            <ui:repeat value="#{bestellung.zutaten}" var="zutat">
+                                <h:form styleClass="#{bestellung.isSelected(zutat) ? 'wrapperleftsub-active' : 'wrapperleftsub'}">
+                                    <h:commandLink styleClass="commandlink" action="#{bestellung.selectZutat(zutat)}" value="#{zutat.name}"><br/>
+                                        <img src="#{zutat.bild}" alt="#{zutat.name}"/>#{zutat.stringBetrag}€</h:commandLink>
+                                </h:form>
+                            </ui:repeat>
+                        </div>
+                    </th>
+                    <th class="columnright">
+                        <div class="wrapperright">
+                            <ui:repeat value="#{bestellung.warenkorb}" var="hotdog">
+                                <div class="hotdog">
+                                    <div><h4>#{hotdog.name}</h4></div>
+                                    <div/>
+                                    <div/>
+                                    <h:form>
+                                        <h:commandLink styleClass="pi pi-pencil" style="color: #FFFFFF; padding-left: 30px"
+                                                       action="#{bestellung.edit(hotdog)}">
+                                        </h:commandLink>
+                                    </h:form>
+                                    <ui:repeat value="#{hotdog.zutatenList}" var="zutat">
+                                        <div class="ingredient">+ #{zutat.name}</div>
+                                        <div class="amountartikel">+ #{zutat.stringBetrag}€</div>
+                                        <div class="#{hotdog.discount(zutat) gt 0? 'discountartikel':''}">
+                                            <ui:fragment rendered="#{hotdog.discount(zutat) gt 0}">
+                                                - #{hotdog.discount(zutat)}%
+                                            </ui:fragment>
+                                        </div>
+                                        <div/>
+                                    </ui:repeat>
+                                </div>
+                                <h:form>
+                                    <ui:fragment rendered="#{bestellung.selected eq hotdog}">
+                                        <h:commandLink style="background-color: #e9967a; margin-bottom: 5px" styleClass="button-warenkorb"
+                                                       action="#{bestellung.deleteHotdog(hotdog)}" value="Hotdog löschen"/>
+                                    </ui:fragment>
+                                </h:form>
+                            </ui:repeat>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="footerbuttons">
+                        <h:form id="warenkorbform">
+                            <h:commandLink styleClass="button-warenkorb" action="#{bestellung.warenkorb()}"
+                                           value="#{bestellung.selected eq null ? 'In den Warenkorb':'Speichern'}"/>
+                        </h:form>
+                    </th>
+                    <th class="footerbuttons">
+                        <h:panelGroup styleClass="amount">#{bestellung.sum()}€</h:panelGroup>
+                        <h:form>
+                            <h:commandLink styleClass="button" action="kasse" value="Kassieren"/>
+                        </h:form>
+                    </th>
+                </tr>
+            </h:panelGroup>
+        </table>
+    </h:body>
+</f:view>
+</html>

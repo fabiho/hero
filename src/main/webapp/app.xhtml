@@ -7,82 +7,56 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <f:view>
     <h:head>
-        <link rel="shortcut icon" type="image/x-icon" href="img/MyHotDog.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="img/foodsteps.ico" />
         <link rel="stylesheet" href="styles.css"/>
-        <title>MyHotDog</title>
+        <title>LikeHeroToZero</title>
     </h:head>
     <h:body class="body">
-        <table class = "maintable">
-            <tr>
-                <th>
-                    <img src="img/MyHotDog.png" alt="hotdog-Bild" class="logo"/><h1>MyHotdog</h1>
-                </th>
-            </tr>
-            <h:panelGroup>
-                <tr>
-                   <th><h2>Zutaten</h2></th>
-                   <th><h2>Warenkorb 🛒</h2></th>
-                </tr>
-                <tr>
-                    <th class="columnleft">
-                        <div class="wrapperleft">
-                            <ui:repeat value="#{bestellung.zutaten}" var="zutat">
-                                <h:form styleClass="#{bestellung.isSelected(zutat) ? 'wrapperleftsub-active' : 'wrapperleftsub'}">
-                                    <h:commandLink styleClass="commandlink" action="#{bestellung.selectZutat(zutat)}" value="#{zutat.name}"><br/>
-                                        <img src="#{zutat.bild}" alt="#{zutat.name}"/>#{zutat.stringBetrag}€</h:commandLink>
-                                </h:form>
-                            </ui:repeat>
-                        </div>
-                    </th>
-                    <th class="columnright">
-                        <div class="wrapperright">
-                            <ui:repeat value="#{bestellung.warenkorb}" var="hotdog">
-                                <div class="hotdog">
-                                    <div><h4>#{hotdog.name}</h4></div>
-                                    <div/>
-                                    <div/>
-                                    <h:form>
-                                        <h:commandLink styleClass="pi pi-pencil" style="color: #FFFFFF; padding-left: 30px"
-                                                       action="#{bestellung.edit(hotdog)}">
-                                        </h:commandLink>
-                                    </h:form>
-                                    <ui:repeat value="#{hotdog.zutatenList}" var="zutat">
-                                        <div class="ingredient">+ #{zutat.name}</div>
-                                        <div class="amountartikel">+ #{zutat.stringBetrag}€</div>
-                                        <div class="#{hotdog.discount(zutat) gt 0? 'discountartikel':''}">
-                                            <ui:fragment rendered="#{hotdog.discount(zutat) gt 0}">
-                                                - #{hotdog.discount(zutat)}%
-                                            </ui:fragment>
-                                        </div>
-                                        <div/>
-                                    </ui:repeat>
-                                </div>
-                                <h:form>
-                                    <ui:fragment rendered="#{bestellung.selected eq hotdog}">
-                                        <h:commandLink style="background-color: #e9967a; margin-bottom: 5px" styleClass="button-warenkorb"
-                                                       action="#{bestellung.deleteHotdog(hotdog)}" value="Hotdog löschen"/>
-                                    </ui:fragment>
-                                </h:form>
-                            </ui:repeat>
-                        </div>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="footerbuttons">
-                        <h:form id="warenkorbform">
-                            <h:commandLink styleClass="button-warenkorb" action="#{bestellung.warenkorb()}"
-                                           value="#{bestellung.selected eq null ? 'In den Warenkorb':'Speichern'}"/>
-                        </h:form>
-                    </th>
-                    <th class="footerbuttons">
-                        <h:panelGroup styleClass="amount">#{bestellung.sum()}€</h:panelGroup>
-                        <h:form>
-                            <h:commandLink styleClass="button" action="kasse" value="Kassieren"/>
-                        </h:form>
-                    </th>
-                </tr>
-            </h:panelGroup>
-        </table>
+        <div class="header">
+            <h:form>
+                <h:commandLink styleClass="titel" action="app" value="Like Hero to Zero"/>
+            </h:form>
+            <div class="navigationBar">
+                <div class="icon-text">
+                    <i class="pi pi-chart-line" style="font-size: 1.5rem"></i>
+                    <h:form>
+                        <h:commandLink styleClass="navigationSelected" action="app" value="Infografiken"/>
+                    </h:form>
+                </div>
+                <div class="icon-text">
+                    <i class="pi pi-database" style="font-size: 1.5rem"></i>
+                    <h:form>
+                        <h:commandLink styleClass="navigation" action="data" value="Forschungsdaten"/>
+                    </h:form>
+                </div>
+                <div class="icon-text">
+                    <i class="pi pi-book" style="font-size: 1.5rem"></i>
+                    <h:form>
+                        <h:commandLink styleClass="navigation" action="report" value="Reporte"/>
+                    </h:form>
+                </div>
+            </div>
+            <div class="icon-text">
+                <i class="pi pi-user" style="font-size: 1.5rem"></i>
+                <h:form>
+                    <h:commandLink styleClass="navigation" action="kasse" value="Login"/>
+                </h:form>
+            </div>
+        </div>
+        <div class="infoGrid">
+            <div class="table">
+                Hier ist eine Infografik
+            </div>
+            <div class="table">
+                Hier ist eine Infografik
+            </div>
+            <div class="table">
+                Hier ist eine Infografik
+            </div>
+            <div class="table">
+                Hier ist eine Infografik
+            </div>
+        </div>
     </h:body>
 </f:view>
 </html>
