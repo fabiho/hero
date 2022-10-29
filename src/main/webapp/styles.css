@@ -31,7 +31,7 @@
     padding: 2rem 2rem 2rem 2rem;
     margin: 1rem 5rem 1rem 5rem;
 }
-.framelogin {
+.frameLogin {
     background-color: white;
     width: fit-content;
     height: fit-content;
@@ -44,7 +44,7 @@
     display: flex;
     align-self: center;
 }
-.frameloginleft {
+.frameLoginLeft {
     background-color: darkseagreen;
     width: 32rem;
     height: 34rem;
@@ -57,7 +57,7 @@
     flex-direction: column;
     justify-content: space-between;
 }
-.frameloginright {
+.frameLoginRight {
     background-color: white;
     width: 32rem;
     height: 34rem;
@@ -70,10 +70,10 @@
     flex-direction: column;
     justify-content: space-between;
 }
-.framereg {
+.frameReg {
     background-color: darkseagreen;
-    width: 64rem;
-    height: 34rem;
+    width: fit-content;
+    height: fit-content;
     border-radius: 5px;
 
     padding: 2rem 2rem 2rem 2rem;
@@ -168,10 +168,16 @@ th, td {
 tr:hover {
     /*background-color: #f5f5f5;*/
 }
-input {
+input,select {
     font-size: 20px;
     border-style: solid;
     border-color: lightgrey;
     border-radius: 5px;
     font-family: AppleGothic;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+.selectManyCheckbox {
+    font-size: 20px;
+    font-family: AppleGothic;
+    color: #FFFFFF;
 }
