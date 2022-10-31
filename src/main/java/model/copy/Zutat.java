@@ -1,4 +1,4 @@
-package model;
+package model.copy;
 
 public enum Zutat {
     basic("Basic", 1.00,"img/hotdog.jpg"),

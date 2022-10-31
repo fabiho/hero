@@ -1,12 +1,12 @@
 package model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 
 @Named
 @ManagedBean
@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Entity
 public class Country implements Serializable {
     @Id
-    private String country_code;
+    private String country_code = "SERVUS";
     private String country_name;
     private double y1990;
     private double y1991;
@@ -31,9 +31,18 @@ public class Country implements Serializable {
     private double y2002;
     private double y2003;
 
+    private final static EntityManagerFactory emf =
+            Persistence.createEntityManagerFactory("country");
 
     public Country() {
 
+    }
+
+    public List<Country> getEmissions() {
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("select c from Country c");
+        List<Country> countryList = q.getResultList();
+        return countryList;
     }
 
     public String getCountry_id() {

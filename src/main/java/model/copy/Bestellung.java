@@ -1,5 +1,7 @@
-import model.Hotdog;
-import model.Zutat;
+package model.copy;
+
+import model.copy.Hotdog;
+import model.copy.Zutat;
 
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;

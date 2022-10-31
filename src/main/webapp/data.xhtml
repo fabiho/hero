@@ -8,7 +8,7 @@
 <f:view>
     <h:head>
         <link rel="shortcut icon" type="image/x-icon" href="img/foodsteps.ico" />
-        <link rel="stylesheet" href="styles.css"/>
+        <link rel="stylesheet" href="css/styles.css"/>
         <title>LikeHeroToZero</title>
     </h:head>
     <h:body class="body">
@@ -45,23 +45,109 @@
         </div>
         <div class="frame">
             <h1 style="color: black">CO2-Emissionen in Millionen Tonnen</h1>
-            <h:dataTable var="allEmissions" rowClasses="gerade, ungerade">
-                <h:column>
-                    <f:facet name="header">Ländername</f:facet>
-                    <h:outputText value="#{country.country_name}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Ländercode</f:facet>
-                    <h:outputText value="#{country.country_id}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">1990</f:facet>
-                    <h:outputText>800.000</h:outputText></h:column>
-                <h:column>
-                    <f:facet name="header">1991</f:facet>
-                    <h:outputText>850.000</h:outputText>
-                </h:column>
-            </h:dataTable>
+            <div>
+                <p:commandButton value="Forschungsdaten erfassen"
+                                 type="button"
+                                 icon="pi pi-plus"
+                                 onclick="PF('dlg1').show()"
+                                 style="background-color: darksalmon;border: none;box-shadow: none;
+                                 font-family: AppleGothic;font-size: 20px"/>
+                <p:dialog header="Erfassung von neuen Forschungsdaten" widgetVar="dlg1" minHeight="40" width="600" showEffect="fade">
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Land auswählen " for="newland"/>
+                            <h:selectOneMenu id="newland">
+                                <f:selectItem itemLabel="Wähle ein Land" itemValue="0"/>
+                                <f:selectItem itemLabel="Deutschland" itemValue="1"/>
+                                <f:selectItem itemLabel="Spanien" itemValue="2"/>
+                                <f:selectItem itemLabel="Tunesien" itemValue="3"/>
+                                <f:selectItem itemLabel="..." itemValue="3"/>
+                            </h:selectOneMenu>
+
+                            <h:outputLabel value="Jahr angeben" for="newjahr"/>
+                            <h:inputText id="newjahr" value="" required="true">
+                                <!-- Größer al letztes Jahr aus DB? -->
+                                <f:validateRegex pattern="[0-9]"/>
+                            </h:inputText>
+
+                            <h:outputLabel value="CO2-Emission: " for="newemission"/>
+                            <h:inputText id="newemission" value="" required="true">
+                                <f:validateRegex pattern="[0-9]"/>
+                            </h:inputText>
+
+                        </h:panelGrid>
+                    </h:form>
+                    <f:facet name="footer">
+                        <p:commandButton type="button" value="Speichern" style="width: 7rem;background-color: darksalmon;border: none;box-shadow: none" />
+                    </f:facet>
+                </p:dialog>
+            </div>
+            <h:form>
+                <p:dataTable var="c" value="" reflow="true" rows="5" paginator="true"
+                             style="font-family: AppleGothic;font-size: 18px">
+                    <p:column headerText="Code">
+                        <h:outputText value="XXX"/>
+                    </p:column>
+
+                    <p:column headerText="Name">
+                        <h:outputText value="Deutschland"/>
+                    </p:column>
+
+                    <p:column headerText="1990">
+                        <h:outputText value="800.000"/>
+                    </p:column>
+
+                    <p:column headerText="1991">
+                        <h:outputText value="850.000"/>
+                    </p:column>
+
+                    <p:column headerText="1992">
+                        <h:outputText value="880.000"/>
+                    </p:column>
+
+                    <!-- Edit-Button -->
+                    <p:column>
+                        <p:commandButton icon="pi pi-pencil"
+                                         oncomplete="PF('dlg2').show()"
+                                         styleClass="edit-button rounded-button ui-button-success"
+                                         process="@this"
+                                         style="background-color: darksalmon;border: none;box-shadow: none">
+                        </p:commandButton>
+                        <p:dialog header="Änderungsanfrage stellen" widgetVar="dlg2" minHeight="40" width="600" showEffect="fade">
+                            <h:form>
+                                <h:panelGrid columns="2">
+                                    <h:outputLabel value="Land auswählen " for="land"/>
+                                    <h:selectOneMenu id="land">
+                                        <f:selectItem itemLabel="Wähle ein Land" itemValue="0"/>
+                                        <f:selectItem itemLabel="Deutschland" itemValue="1"/>
+                                        <f:selectItem itemLabel="Spanien" itemValue="2"/>
+                                        <f:selectItem itemLabel="Tunesien" itemValue="3"/>
+                                        <f:selectItem itemLabel="..." itemValue="3"/>
+                                    </h:selectOneMenu>
+
+                                    <h:outputLabel value="Jahr auswählen " for="jahr"/>
+                                    <h:selectOneMenu id="jahr">
+                                        <f:selectItem itemLabel="Wähle ein Jahr" itemValue="0"/>
+                                        <f:selectItem itemLabel="1990" itemValue="1"/>
+                                        <f:selectItem itemLabel="1991" itemValue="2"/>
+                                        <f:selectItem itemLabel="1992" itemValue="3"/>
+                                        <f:selectItem itemLabel="..." itemValue="3"/>
+                                    </h:selectOneMenu>
+
+                                    <h:outputLabel value="CO2-Emission: " for="emission"/>
+                                    <h:inputText id="emission" value="" required="true">
+                                        <f:validateRegex pattern="[0-1]"/>
+                                    </h:inputText>
+
+                                </h:panelGrid>
+                            </h:form>
+                            <f:facet name="footer">
+                                <p:commandButton type="button" value="Abschicken" style="width: 7rem;background-color: darksalmon;border: none;box-shadow: none" />
+                            </f:facet>
+                        </p:dialog>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
         </div>
     </h:body>
 </f:view>

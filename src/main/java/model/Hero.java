@@ -14,7 +14,8 @@ import java.util.List;
 @Named
 @ManagedBean
 @ApplicationScoped
-public class Hero {
+public class Hero implements Serializable {
+    /**
     private final static EntityManagerFactory emf =
             Persistence.createEntityManagerFactory("country");
 
@@ -28,4 +29,5 @@ public class Hero {
         List<Country> countryList = q.getResultList();
         return countryList;
     }
+     **/
 }
