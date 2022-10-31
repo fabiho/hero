@@ -1,17 +1,21 @@
 package model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 
 @Named
 @ManagedBean
 @ApplicationScoped
+@Entity
 public class Country implements Serializable {
-    private String country_code = "GER";
-    private String country_name = "Deutschland";
+    @Id
+    private String country_code;
+    private String country_name;
     private double y1990;
     private double y1991;
     private double y1992;
