@@ -1,8 +1,17 @@
 package model;
 
-public class Emissions {
+import javax.annotation.ManagedBean;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
+
+@Named
+@ManagedBean
+@ApplicationScoped
+public class Country implements Serializable {
     private String country_code = "GER";
-    private String country_name;
+    private String country_name = "Deutschland";
     private double y1990;
     private double y1991;
     private double y1992;
@@ -19,12 +28,8 @@ public class Emissions {
     private double y2003;
 
 
+    public Country() {
 
-    Emissions(String country_code, String country_name , double y1990, double y1991) {
-        this.country_code = country_code;
-        this.country_name = country_name;
-        this.y1990 = y1990;
-        this.y1991 = y1991;
     }
 
     public String getCountry_id() {

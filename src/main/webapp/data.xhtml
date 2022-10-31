@@ -45,24 +45,23 @@
         </div>
         <div class="frame">
             <h1 style="color: black">CO2-Emissionen in Millionen Tonnen</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th><h2>Land</h2></th>
-                        <th><h2>2020</h2></th>
-                        <th><h2>2021</h2></th>
-                        <th><h2>2022</h2></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>Deutschland</th>
-                        <th>70,000</th>
-                        <th>85,000</th>
-                        <th>80,000</th>
-                    </tr>
-                </tbody>
-            </table>
+            <h:dataTable var="allEmissions" rowClasses="gerade, ungerade">
+                <h:column>
+                    <f:facet name="header">Ländername</f:facet>
+                    <h:outputText value="#{country.country_name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Ländercode</f:facet>
+                    <h:outputText value="#{country.country_id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">1990</f:facet>
+                    <h:outputText>800.000</h:outputText></h:column>
+                <h:column>
+                    <f:facet name="header">1991</f:facet>
+                    <h:outputText>850.000</h:outputText>
+                </h:column>
+            </h:dataTable>
         </div>
     </h:body>
 </f:view>
