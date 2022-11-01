@@ -67,7 +67,7 @@
                             <h:outputLabel value="Jahr angeben" for="newjahr"/>
                             <h:inputText id="newjahr" value="" required="true">
                                 <!-- Größer al letztes Jahr aus DB? -->
-                                <f:validateRegex pattern="[0-9]"/>
+                                <f:validateLongRange minimum="2020"/>
                             </h:inputText>
 
                             <h:outputLabel value="CO2-Emission: " for="newemission"/>
