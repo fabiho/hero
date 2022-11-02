@@ -85,12 +85,14 @@
             <h:form>
                 <p:dataTable var="c" value="" reflow="true" rows="5" paginator="true"
                              style="font-family: AppleGothic;font-size: 18px">
-                    <p:column headerText="Code">
-                        <h:outputText value="XXX"/>
-                    </p:column>
+                    <ui:repeat value="#{country}" var="c">
+                        <p:column headerText="Code">
+                            <h:outputText value="#{c.country_code}"/>
+                        </p:column>
+                    </ui:repeat>
 
                     <p:column headerText="Name">
-                        <h:outputText value="Deutschland"/>
+                        <h:outputText value="#{country.country_name}"/>
                     </p:column>
 
                     <p:column headerText="1990">

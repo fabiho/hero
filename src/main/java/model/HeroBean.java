@@ -5,27 +5,26 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
 @Named
-@ManagedBean
 @ApplicationScoped
-public class Hero implements Serializable {
+public class HeroBean implements Serializable {
     private final static EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory("country");
+            Persistence.createEntityManagerFactory("hero");
 
-    public Hero(){
+    public HeroBean(){
 
     }
 
     public List<Country> getEmissions() {
         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("select c from Country c");
-        List<Country> countryList = q.getResultList();
-        return countryList;
+        List<Country> country = q.getResultList();
+        String x = "Hello World";
+        return country;
     }
 }
