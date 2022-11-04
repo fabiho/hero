@@ -3,10 +3,8 @@ package model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-import java.io.Serializable;
-
 @Entity
-public class Country implements Serializable {
+public class Country {
     @Id
     private String country_code;
     private String country_name;
@@ -48,8 +46,7 @@ public class Country implements Serializable {
     private String y2020;
     private String y2021;
 
-    public Country () {
-        
+    public Country() {
     }
 
     public String getCountry_name() {

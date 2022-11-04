@@ -27,7 +27,7 @@
 .frame {
     background-color: white;
     width: auto;
-    height: 50rem;
+    height: fit-content;
     border-style: solid;
     border-color: lightgrey;
     border-radius: 5px;

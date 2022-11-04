@@ -83,28 +83,38 @@
                 </p:dialog>
             </div>
             <h:form>
-                <p:dataTable var="c" value="" reflow="true" rows="5" paginator="true"
+                <p:dataTable var="c" value="#{countryDAO.findAll()}" reflow="true" rows="10" paginator="true"
                              style="font-family: AppleGothic;font-size: 18px">
-                    <ui:repeat value="#{country}" var="c">
                         <p:column headerText="Code">
                             <h:outputText value="#{c.country_code}"/>
                         </p:column>
-                    </ui:repeat>
 
                     <p:column headerText="Name">
-                        <h:outputText value="#{country.country_name}"/>
+                        <h:outputText value="#{c.country_name}"/>
                     </p:column>
 
                     <p:column headerText="1990">
-                        <h:outputText value="800.000"/>
+                        <h:outputText value="#{c.y1990}"/>
                     </p:column>
 
-                    <p:column headerText="1991">
-                        <h:outputText value="850.000"/>
+                    <p:column headerText="2000">
+                        <h:outputText value="#{c.y2000}"/>
                     </p:column>
 
-                    <p:column headerText="1992">
-                        <h:outputText value="880.000"/>
+                    <p:column headerText="2010">
+                        <h:outputText value="#{c.y2010}"/>
+                    </p:column>
+
+                    <p:column headerText="2015">
+                        <h:outputText value="#{c.y2015}"/>
+                    </p:column>
+
+                    <p:column headerText="2020">
+                        <h:outputText value="#{c.y2020}"/>
+                    </p:column>
+
+                    <p:column headerText="Aktuelles Jahr">
+                        <h:outputText value="#{c.y2021}"/>
                     </p:column>
 
                     <!-- Edit-Button -->

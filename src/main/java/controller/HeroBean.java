@@ -1,13 +1,15 @@
-package model;
+package controller;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
+import model.Country;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Named
@@ -20,11 +22,19 @@ public class HeroBean implements Serializable {
 
     }
 
-    public List<Country> getEmissions() {
+    public List<Country> getCountrys() {
         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("select c from Country c");
         List<Country> country = q.getResultList();
-        String x = "Hello World";
         return country;
     }
+
+    public void saveCountry (Country country) {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction t = em.getTransaction();
+        t.begin();
+        em.merge(country);
+        t.commit();
+    }
+
 }
