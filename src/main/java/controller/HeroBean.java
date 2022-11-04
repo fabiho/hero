@@ -1,35 +1,44 @@
 package controller;
 
-import jakarta.persistence.*;
 import model.Country;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.annotation.ManagedBean;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
-@ApplicationScoped
+@ManagedBean
+@SessionScoped
 public class HeroBean implements Serializable {
-    private final static EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory("hero");
 
-    public HeroBean(){
+    private Country selected;
+    private List <Country> selectedCountry = new ArrayList<>();
+
+    public void selectCountry (Country country) {
+        selectedCountry.clear();
+        selectedCountry.add(country);
+        String x = "Hello World";
     }
 
-    public List<Country> getCountrys() {
-        EntityManager em = emf.createEntityManager();
-        Query q = em.createQuery("select c from Country c");
-        List<Country> country = q.getResultList();
-        return country;
+    public boolean isSelected(Country country) {
+        return selectedCountry.contains(country);
     }
 
-    public void saveCountry (Country country) {
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction t = em.getTransaction();
-        t.begin();
-        em.merge(country);
-        t.commit();
+    //Getter + Setter
+    public Country getSelected() {
+        return selected;
+    }
+    public void setSelected(Country selected) {
+        this.selected = selected;
+    }
+    public List<Country> getSelectedCountry() {
+        return selectedCountry;
+    }
+    public void setSelectedCountry(List<Country> selectedCountry) {
+        this.selectedCountry = selectedCountry;
     }
 
 }

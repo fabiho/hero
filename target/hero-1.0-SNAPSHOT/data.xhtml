@@ -7,7 +7,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <f:view>
     <h:head>
-        <link rel="shortcut icon" type="image/x-icon" href="img/foodsteps.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="img/co2.ico" />
         <link rel="stylesheet" href="css/styles.css"/>
         <title>LikeHeroToZero</title>
     </h:head>
@@ -138,18 +138,19 @@
                                          oncomplete="PF('dlg2').show()"
                                          styleClass="edit-button rounded-button ui-button-success"
                                          process="@this"
-                                         style="background-color: darksalmon;border: none;box-shadow: none">
+                                         style="background-color: darksalmon;border: none;box-shadow: none"
+                                         action="#{heroBean.selectCountry(c)}">
                         </p:commandButton>
                         <p:dialog header="Änderungsanfrage stellen" widgetVar="dlg2" minHeight="40" width="600" showEffect="fade">
                             <h:form>
                                 <h:panelGrid columns="2">
                                     <h:outputLabel value="Land: "/>
-                                    <h:outputLabel value="#{c.country_name}" />
+                                    <h:outputLabel value="#{heroBean.getSelectedCountry()}" />
 
                                     <h:outputLabel value="Jahr auswählen " for="jahr"/>
                                     <h:selectOneMenu id="jahr">
                                         <f:selectItem itemLabel="Wähle ein Jahr" itemValue="0"/>
-                                        <f:selectItem itemLabel="..." />
+                                        <f:selectItem itemLabel="..." itemValue="1" />
                                     </h:selectOneMenu>
 
                                     <h:outputLabel value="CO2-Emission: " for="emission"/>

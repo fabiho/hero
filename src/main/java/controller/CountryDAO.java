@@ -1,9 +1,6 @@
 package controller;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
 import model.Country;
 
 import javax.inject.Named;
@@ -22,5 +19,15 @@ public class CountryDAO {
         entityManager.close();
         return allCountry;
     }
+
+    public void saveCountry (Country country) {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction t = em.getTransaction();
+        t.begin();
+        em.merge(country);
+        t.commit();
+    }
+
+
 
 }

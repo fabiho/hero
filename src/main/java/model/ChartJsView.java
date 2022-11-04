@@ -177,7 +177,7 @@ public class ChartJsView implements Serializable {
         values.add(40);
         dataSet.setData(values);
         dataSet.setFill(false);
-        dataSet.setLabel("My First Dataset");
+        dataSet.setLabel("Germany");
         dataSet.setBorderColor("rgb(75, 192, 192)");
         dataSet.setTension(0.1);
         data.addChartDataSet(dataSet);
