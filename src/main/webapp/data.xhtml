@@ -143,9 +143,14 @@
                         </p:commandButton>
                         <p:dialog header="Änderungsanfrage stellen" widgetVar="dlg2" minHeight="40" width="600" showEffect="fade">
                             <h:form>
-                                <h:panelGrid columns="2">
+                                <h:panelGrid columns="2" style="font-family: AppleGothic;font-size: 18px;">
                                     <h:outputLabel value="Land: "/>
-                                    <h:outputLabel value="#{heroBean.getSelectedCountry()}" />
+                                    <ui:repeat var="country" value="#{heroBean.getSelectedCountry()}">
+                                        <ui:fragment rendered="true">
+                                            #{country.country_name}
+                                        </ui:fragment>
+                                    </ui:repeat>
+
 
                                     <h:outputLabel value="Jahr auswählen " for="jahr"/>
                                     <h:selectOneMenu id="jahr">
