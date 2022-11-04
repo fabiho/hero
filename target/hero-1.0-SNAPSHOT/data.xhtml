@@ -54,23 +54,38 @@
                                  font-family: AppleGothic;font-size: 20px"/>
                 <p:dialog header="Erfassung von neuen Forschungsdaten" widgetVar="dlg1" minHeight="40" width="600" showEffect="fade">
                     <h:form>
-                        <h:panelGrid columns="2">
-                            <h:outputLabel value="Land auswählen " for="newland"/>
-                            <h:selectOneMenu id="newland">
-                                <f:selectItem itemLabel="Wähle ein Land" itemValue="0"/>
-                                <f:selectItem itemLabel="Deutschland" itemValue="1"/>
-                                <f:selectItem itemLabel="Spanien" itemValue="2"/>
-                                <f:selectItem itemLabel="Tunesien" itemValue="3"/>
-                                <f:selectItem itemLabel="..." itemValue="3"/>
-                            </h:selectOneMenu>
+                        <h:panelGrid columns="1">
+                            <h:outputLabel value="Land auswählen: " for="newland"/>
+                            <p:selectOneMenu id="newland" value="#{selectOneMenuView.country}" converter="#{countryConverter}"
+                                             panelStyle="width:180px" effect="fade" var="c"
+                                             filter="true" filterMatchMode="startsWith">
 
-                            <h:outputLabel value="Jahr angeben" for="newjahr"/>
-                            <h:inputText id="newjahr" value="" required="true">
-                                <!-- Größer al letztes Jahr aus DB? -->
-                                <f:validateLongRange minimum="2020"/>
-                            </h:inputText>
+                                <f:selectItems value="#{selectOneMenuView.countries}" var="country"
+                                               itemLabel="#{country.country_name}" itemValue="#{country}"/>
 
-                            <h:outputLabel value="CO2-Emission: " for="newemission"/>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Name"/>
+                                    </f:facet>
+                                    <h:outputText value="#{c.country_name}"/>
+                                </p:column>
+
+                                <f:facet name="footer">
+                                    <h:outputText value="#{selectOneMenuView.countries.size()} countries"
+                                                  style="font-weight:bold;" styleClass="py-1 block"/>
+                                </f:facet>
+
+                            </p:selectOneMenu>
+
+                            <h:outputLabel value="Für welches Jahr?"/>
+                            <h:form>
+                                <p:selectOneButton value="#{selectOneButtonView.option}">
+                                    <f:selectItem itemLabel="Letztes Jahr" itemValue="Option 1"/>
+                                    <f:selectItem itemLabel="Dieses Jahr" itemValue="Option 2"/>
+                                </p:selectOneButton>
+                            </h:form>
+
+                            <h:outputLabel value="CO2-Emission: (In Millionen Tonnen)" for="newemission"/>
                             <h:inputText id="newemission" value="" required="true">
                                 <f:validateRegex pattern="[0-9]"/>
                             </h:inputText>
@@ -128,22 +143,13 @@
                         <p:dialog header="Änderungsanfrage stellen" widgetVar="dlg2" minHeight="40" width="600" showEffect="fade">
                             <h:form>
                                 <h:panelGrid columns="2">
-                                    <h:outputLabel value="Land auswählen " for="land"/>
-                                    <h:selectOneMenu id="land">
-                                        <f:selectItem itemLabel="Wähle ein Land" itemValue="0"/>
-                                        <f:selectItem itemLabel="Deutschland" itemValue="1"/>
-                                        <f:selectItem itemLabel="Spanien" itemValue="2"/>
-                                        <f:selectItem itemLabel="Tunesien" itemValue="3"/>
-                                        <f:selectItem itemLabel="..." itemValue="3"/>
-                                    </h:selectOneMenu>
+                                    <h:outputLabel value="Land: "/>
+                                    <h:outputLabel value="#{c.country_name}" />
 
                                     <h:outputLabel value="Jahr auswählen " for="jahr"/>
                                     <h:selectOneMenu id="jahr">
                                         <f:selectItem itemLabel="Wähle ein Jahr" itemValue="0"/>
-                                        <f:selectItem itemLabel="1990" itemValue="1"/>
-                                        <f:selectItem itemLabel="1991" itemValue="2"/>
-                                        <f:selectItem itemLabel="1992" itemValue="3"/>
-                                        <f:selectItem itemLabel="..." itemValue="3"/>
+                                        <f:selectItem itemLabel="..." />
                                     </h:selectOneMenu>
 
                                     <h:outputLabel value="CO2-Emission: " for="emission"/>

@@ -1,5 +1,8 @@
-/Users/fabian/Web-Projekte/hotdogapp/src/main/java/model/Zutat.java
-/Users/fabian/Web-Projekte/hotdogapp/src/main/java/model/Hotdog.java
-/Users/fabian/Web-Projekte/hotdogapp/src/main/java/model/Kasse.java
-/Users/fabian/Web-Projekte/hotdogapp/src/main/java/com/example/hotdogapp/HelloServlet.java
-/Users/fabian/Web-Projekte/hotdogapp/src/main/java/Bestellung.java
+/Users/fabian/Web-Projekte/hero/src/main/java/controller/HeroBean.java
+/Users/fabian/Web-Projekte/hero/src/main/java/model/CountryDAO.java
+/Users/fabian/Web-Projekte/hero/src/main/java/model/copy/Kasse.java
+/Users/fabian/Web-Projekte/hero/src/main/java/model/ChartJsView.java
+/Users/fabian/Web-Projekte/hero/src/main/java/model/copy/Hotdog.java
+/Users/fabian/Web-Projekte/hero/src/main/java/model/copy/Bestellung.java
+/Users/fabian/Web-Projekte/hero/src/main/java/model/copy/Zutat.java
+/Users/fabian/Web-Projekte/hero/src/main/java/model/Country.java
