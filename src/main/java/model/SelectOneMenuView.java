@@ -4,14 +4,10 @@ import controller.CountryDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.model.SelectItem;
-import javax.faces.model.SelectItemGroup;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Named
 @RequestScoped
@@ -20,12 +16,6 @@ public class SelectOneMenuView {
     private String selectedOption;
     private String rtl;
     private String hideNoSelectOption;
-
-    private String countryGroup;
-    private List<SelectItem> countriesGroup;
-
-    private String city;
-    private Map<String, String> cities = new HashMap<>();
 
     private Country country;
     private List<Country> countries;
@@ -43,34 +33,6 @@ public class SelectOneMenuView {
 
     @PostConstruct
     public void init() {
-
-        countriesGroup = new ArrayList<>();
-
-        SelectItemGroup europeCountries = new SelectItemGroup("Europe Countries");
-        europeCountries.setSelectItems(new SelectItem[]{
-                new SelectItem("Germany", "Germany"),
-                new SelectItem("Turkey", "Turkey"),
-                new SelectItem("Spain", "Spain")
-        });
-
-        SelectItemGroup americaCountries = new SelectItemGroup("America Countries");
-        americaCountries.setSelectItems(new SelectItem[]{
-                new SelectItem("United States", "United States"),
-                new SelectItem("Brazil", "Brazil"),
-                new SelectItem("Mexico", "Mexico")
-        });
-
-        countriesGroup.add(europeCountries);
-        countriesGroup.add(americaCountries);
-
-        //cities
-        cities = new HashMap<>();
-        cities.put("New York", "New York");
-        cities.put("London", "London");
-        cities.put("Paris", "Paris");
-        cities.put("Barcelona", "Barcelona");
-        cities.put("Istanbul", "Istanbul");
-        cities.put("Berlin", "Berlin");
 
         //countries
         countries = service.findAll();
@@ -104,38 +66,6 @@ public class SelectOneMenuView {
 
     public void setRtl(String rtl) {
         this.rtl = rtl;
-    }
-
-    public String getCountryGroup() {
-        return countryGroup;
-    }
-
-    public void setCountryGroup(String countryGroup) {
-        this.countryGroup = countryGroup;
-    }
-
-    public List<SelectItem> getCountriesGroup() {
-        return countriesGroup;
-    }
-
-    public void setCountriesGroup(List<SelectItem> countriesGroup) {
-        this.countriesGroup = countriesGroup;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public Map<String, String> getCities() {
-        return cities;
-    }
-
-    public void setCities(Map<String, String> cities) {
-        this.cities = cities;
     }
 
     public Country getCountry() {

@@ -46,6 +46,7 @@
         <div class="frame">
             <h1 style="color: black">CO2-Emissionen in Millionen Tonnen</h1>
             <div>
+                <!-- Daten erfassen -->
                 <p:commandButton value="Forschungsdaten erfassen"
                                  type="button"
                                  icon="pi pi-plus"
@@ -139,24 +140,40 @@
                                          styleClass="edit-button rounded-button ui-button-success"
                                          process="@this"
                                          style="background-color: darksalmon;border: none;box-shadow: none"
-                                         action="#{heroBean.selectCountry(c)}">
+                                         action="#{heroBean.selectCountry(c)}"
+                                         update="editDialog">
                         </p:commandButton>
-                        <p:dialog header="Änderungsanfrage stellen" widgetVar="dlg2" minHeight="40" width="600" showEffect="fade">
+                        <p:dialog id="editDialog" header="Änderungsanfrage stellen" widgetVar="dlg2" minHeight="40" width="600" showEffect="fade">
                             <h:form>
                                 <h:panelGrid columns="2" style="font-family: AppleGothic;font-size: 18px;">
                                     <h:outputLabel value="Land: "/>
                                     <ui:repeat var="country" value="#{heroBean.getSelectedCountry()}">
-                                        <ui:fragment rendered="true">
+                                        <ui:fragment >
                                             #{country.country_name}
                                         </ui:fragment>
                                     </ui:repeat>
 
+                                    <h:outputLabel value="Jahr auswählen "/>
+                                    <p:selectOneMenu  value="#{selectOneMenuView.country}" converter="#{countryConverter}"
+                                                     panelStyle="width:180px" effect="fade" var="c"
+                                                     filter="true" filterMatchMode="startsWith">
 
-                                    <h:outputLabel value="Jahr auswählen " for="jahr"/>
-                                    <h:selectOneMenu id="jahr">
-                                        <f:selectItem itemLabel="Wähle ein Jahr" itemValue="0"/>
-                                        <f:selectItem itemLabel="..." itemValue="1" />
-                                    </h:selectOneMenu>
+                                        <f:selectItems value="#{selectOneMenuView.countries}" var="country"
+                                                       itemLabel="#{country.country_code}" itemValue="#{country}"/>
+
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Name"/>
+                                            </f:facet>
+                                            <h:outputText value="#{c.country_code}"/>
+                                        </p:column>
+
+                                        <f:facet name="footer">
+                                            <h:outputText value="#{selectOneMenuView.countries.size()} countries"
+                                                          style="font-weight:bold;" styleClass="py-1 block"/>
+                                        </f:facet>
+
+                                    </p:selectOneMenu>
 
                                     <h:outputLabel value="CO2-Emission: " for="emission"/>
                                     <h:inputText id="emission" value="" required="true">
@@ -166,7 +183,11 @@
                                 </h:panelGrid>
                             </h:form>
                             <f:facet name="footer">
-                                <p:commandButton type="button" value="Abschicken" style="width: 7rem;background-color: darksalmon;border: none;box-shadow: none" />
+                                <p:commandButton
+                                        type="button"
+                                        value="Abschicken"
+                                        style="width: 7rem;background-color: darksalmon;border: none;box-shadow: none"
+                                        onclick="PF('dlg2').hide();"/>
                             </f:facet>
                         </p:dialog>
                     </p:column>

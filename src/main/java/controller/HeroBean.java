@@ -3,7 +3,7 @@ package controller;
 import model.Country;
 
 import javax.annotation.ManagedBean;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,10 +11,12 @@ import java.util.List;
 
 @Named
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class HeroBean implements Serializable {
 
     private Country selected;
+    private boolean t = true;
+
     private List <Country> selectedCountry = new ArrayList<>();
 
     public void selectCountry (Country country) {
