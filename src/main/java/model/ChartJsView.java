@@ -177,25 +177,27 @@ public class ChartJsView implements Serializable {
         values.add(40);
         dataSet.setData(values);
         dataSet.setFill(false);
+        //Hier muss das ausgewählte Land rein
         dataSet.setLabel("Germany");
         dataSet.setBorderColor("rgb(75, 192, 192)");
         dataSet.setTension(0.1);
         data.addChartDataSet(dataSet);
 
         List<String> labels = new ArrayList<>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("June");
-        labels.add("July");
+        labels.add("1990");
+        labels.add("1995");
+        labels.add("2000");
+        labels.add("2005");
+        labels.add("2010");
+        labels.add("2015");
+        labels.add("2019");
+        //Hier könnte man die Jahre als Label importieren
         data.setLabels(labels);
 
         //Options
         LineChartOptions options = new LineChartOptions();
         Title title = new Title();
-        title.setDisplay(true);
+        title.setDisplay(false);
         title.setText("Line Chart");
         options.setTitle(title);
 
