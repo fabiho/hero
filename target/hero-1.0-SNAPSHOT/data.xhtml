@@ -56,8 +56,8 @@
                 <p:dialog header="Erfassung von neuen Forschungsdaten" widgetVar="dlg1" minHeight="40" width="600" showEffect="fade">
                     <h:form>
                         <h:panelGrid columns="1">
-                            <h:outputLabel value="Land auswählen: " for="newland"/>
-                            <p:selectOneMenu id="newland" value="#{selectOneMenuView.country}" converter="#{countryConverter}"
+                            <h:outputLabel value="Land auswählen: "/>
+                            <p:selectOneMenu value="#{selectOneMenuView.country}" converter="#{countryConverter}"
                                              panelStyle="width:180px" effect="fade" var="c"
                                              filter="true" filterMatchMode="startsWith">
 
@@ -72,7 +72,7 @@
                                 </p:column>
 
                                 <f:facet name="footer">
-                                    <h:outputText value="#{selectOneMenuView.countries.size()} countries"
+                                    <h:outputText value="#{selectOneMenuView.countries.size()} Länder"
                                                   style="font-weight:bold;" styleClass="py-1 block"/>
                                 </f:facet>
 
@@ -154,7 +154,7 @@
                                     </ui:repeat>
 
                                     <h:outputLabel value="Jahr auswählen "/>
-                                    <p:selectOneMenu  value="#{selectOneMenuView.country}" converter="#{countryConverter}"
+                                    <p:selectOneMenu value="#{selectOneMenuView.country}" converter="#{countryConverter}"
                                                      panelStyle="width:180px" effect="fade" var="c"
                                                      filter="true" filterMatchMode="startsWith">
 

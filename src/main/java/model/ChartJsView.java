@@ -5,48 +5,32 @@ import org.primefaces.model.charts.ChartData;
 import org.primefaces.model.charts.axes.cartesian.CartesianScales;
 import org.primefaces.model.charts.axes.cartesian.linear.CartesianLinearAxes;
 import org.primefaces.model.charts.axes.cartesian.linear.CartesianLinearTicks;
-import org.primefaces.model.charts.axes.radial.RadialScales;
-import org.primefaces.model.charts.axes.radial.linear.RadialLinearAngleLines;
-import org.primefaces.model.charts.axes.radial.linear.RadialLinearPointLabels;
-import org.primefaces.model.charts.axes.radial.linear.RadialLinearTicks;
 import org.primefaces.model.charts.bar.BarChartDataSet;
 import org.primefaces.model.charts.bar.BarChartModel;
 import org.primefaces.model.charts.bar.BarChartOptions;
-import org.primefaces.model.charts.bubble.BubbleChartDataSet;
 import org.primefaces.model.charts.bubble.BubbleChartModel;
-import org.primefaces.model.charts.data.BubblePoint;
-import org.primefaces.model.charts.data.NumericPoint;
-import org.primefaces.model.charts.donut.DonutChartDataSet;
 import org.primefaces.model.charts.donut.DonutChartModel;
-import org.primefaces.model.charts.hbar.HorizontalBarChartDataSet;
 import org.primefaces.model.charts.hbar.HorizontalBarChartModel;
 import org.primefaces.model.charts.line.LineChartDataSet;
 import org.primefaces.model.charts.line.LineChartModel;
 import org.primefaces.model.charts.line.LineChartOptions;
 import org.primefaces.model.charts.optionconfig.animation.Animation;
-import org.primefaces.model.charts.optionconfig.elements.Elements;
-import org.primefaces.model.charts.optionconfig.elements.ElementsLine;
 import org.primefaces.model.charts.optionconfig.legend.Legend;
 import org.primefaces.model.charts.optionconfig.legend.LegendLabel;
 import org.primefaces.model.charts.optionconfig.title.Title;
-import org.primefaces.model.charts.optionconfig.tooltip.Tooltip;
-import org.primefaces.model.charts.pie.PieChartDataSet;
 import org.primefaces.model.charts.pie.PieChartModel;
-import org.primefaces.model.charts.polar.PolarAreaChartDataSet;
 import org.primefaces.model.charts.polar.PolarAreaChartModel;
-import org.primefaces.model.charts.radar.RadarChartDataSet;
 import org.primefaces.model.charts.radar.RadarChartModel;
-import org.primefaces.model.charts.radar.RadarChartOptions;
 import org.primefaces.model.charts.scatter.ScatterChartModel;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Named
@@ -54,42 +38,34 @@ import java.util.List;
 public class ChartJsView implements Serializable {
 
     private PieChartModel pieModel;
-
     private PolarAreaChartModel polarAreaModel;
-
     private LineChartModel lineModel;
-
     private LineChartModel cartesianLinerModel;
-
     private BarChartModel barModel;
-
     private BarChartModel barModel2;
-
     private HorizontalBarChartModel hbarModel;
-
     private BarChartModel stackedBarModel;
-
     private BarChartModel stackedGroupBarModel;
-
     private RadarChartModel radarModel;
-
     private RadarChartModel radarModel2;
-
     private BubbleChartModel bubbleModel;
-
     private BarChartModel mixedModel;
-
     private DonutChartModel donutModel;
-
     private ScatterChartModel scatterModel;
+
+    @Inject
+    private Country country;
 
     @PostConstruct
     public void init() {
+        /*
         createPieModel();
         createPolarAreaModel();
+         */
         createLineModel();
-        createCartesianLinerModel();
+        //createCartesianLinerModel();
         createBarModel();
+        /*
         createBarModel2();
         createHorizontalBarModel();
         createStackedBarModel();
@@ -100,8 +76,11 @@ public class ChartJsView implements Serializable {
         createMixedModel();
         createDonutModel();
         createScatterModel();
+         */
     }
 
+    /* Nicht verwendet
+     *
     private void createPieModel() {
         pieModel = new PieChartModel();
         ChartData data = new ChartData();
@@ -161,6 +140,7 @@ public class ChartJsView implements Serializable {
 
         polarAreaModel.setData(data);
     }
+    */
 
     public void createLineModel() {
         lineModel = new LineChartModel();
@@ -168,17 +148,17 @@ public class ChartJsView implements Serializable {
 
         LineChartDataSet dataSet = new LineChartDataSet();
         List<Object> values = new ArrayList<>();
-        values.add(65);
-        values.add(59);
-        values.add(80);
-        values.add(81);
-        values.add(56);
-        values.add(55);
-        values.add(40);
+        values.add(country.getY1990());
+        values.add(country.getY1995());
+        values.add(country.getY2000());
+        values.add(country.getY2005());
+        values.add(country.getY2010());
+        values.add(country.getY2015());
+        values.add(country.getY2019());
         dataSet.setData(values);
         dataSet.setFill(false);
         //Hier muss das ausgewählte Land rein
-        dataSet.setLabel("Germany");
+        dataSet.setLabel(country.getCountry_name());
         dataSet.setBorderColor("rgb(75, 192, 192)");
         dataSet.setTension(0.1);
         data.addChartDataSet(dataSet);
@@ -205,6 +185,7 @@ public class ChartJsView implements Serializable {
         lineModel.setData(data);
     }
 
+    /* Nicht verewendet -->
     public void createScatterModel() {
         scatterModel = new ScatterChartModel();
         ChartData data = new ChartData();
@@ -309,6 +290,7 @@ public class ChartJsView implements Serializable {
 
         cartesianLinerModel.setOptions(options);
     }
+    */
 
     public void createBarModel() {
         barModel = new BarChartModel();
@@ -395,6 +377,7 @@ public class ChartJsView implements Serializable {
         barModel.setOptions(options);
     }
 
+    /* Nicht verwendet -->
     public void createBarModel2() {
         barModel2 = new BarChartModel();
         ChartData data = new ChartData();
@@ -752,7 +735,7 @@ public class ChartJsView implements Serializable {
         labels.add("Running");
         data.setLabels(labels);
 
-        /* Options */
+        //Options
         RadarChartOptions options = new RadarChartOptions();
         Elements elements = new Elements();
         ElementsLine elementsLine = new ElementsLine();
@@ -816,7 +799,7 @@ public class ChartJsView implements Serializable {
         labels.add(new ArrayList(Arrays.asList("Change", "Mgmt")));
         data.setLabels(labels);
 
-        /* Options */
+        // Options
         RadarChartOptions options = new RadarChartOptions();
         RadialScales rScales = new RadialScales();
 
@@ -939,6 +922,7 @@ public class ChartJsView implements Serializable {
 
         donutModel.setData(data);
     }
+    */
 
     public void itemSelect(ItemSelectEvent event) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",
