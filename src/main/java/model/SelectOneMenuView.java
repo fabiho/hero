@@ -1,6 +1,6 @@
 package model;
 
-import controller.CountryDAO;
+import DAO.CountryDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;

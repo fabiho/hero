@@ -1,33 +1,28 @@
-package controller;
+package DAO;
 
 import jakarta.persistence.*;
-import model.Country;
+import model.User;
 
-import javax.inject.Named;
 import java.util.List;
 
-@Named
-public class CountryDAO {
+public class UserDAO {
 
     private EntityManagerFactory emf =
             Persistence.createEntityManagerFactory("hero");
 
-    public List<Country> findAll() {
+    public List<User> allUsers() {
         EntityManager entityManager = emf.createEntityManager();
-        Query abfrage = entityManager.createQuery("select c from Country c");
-        List<Country> allCountry = abfrage.getResultList();
+        Query abfrage = entityManager.createQuery("select u from User u");
+        List<User> allUsers = abfrage.getResultList();
         entityManager.close();
-        return allCountry;
+        return allUsers;
     }
 
-    public void saveCountry (Country country) {
+    public void createUser(User user) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction t = em.getTransaction();
         t.begin();
-        em.merge(country);
+        em.persist(user);
         t.commit();
     }
-
-
-
 }

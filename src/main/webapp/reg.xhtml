@@ -59,30 +59,36 @@
                         <h:outputLabel value=" "/>
 
                         <h:outputLabel value="Vorname: " for="vorname"/>
-                        <h:inputText id="vorname" value="" required="true">
+                        <h:inputText id="vorname" value="" required="true" requiredMessage="da fehlt was">
                             <f:validateRegex pattern="[a-zA-Z]"/>
                         </h:inputText>
+
                         <h:outputLabel value="Nachname: " for="name"/>
-                        <h:inputText id="name" value=""/>
+                        <h:inputText id="name" value="" required="true"/>
 
                         <h:outputLabel value="Firma / Institut: " for="firma"/>
-                        <h:inputText id="firma" value=""/>
+                        <h:inputText id="firma" value="" required="true"/>
+
                         <h:outputLabel value="Position: " for="position"/>
                         <h:inputText id="position" value=""/>
 
                         <h:outputLabel value="E-Mail Adresse: " for="mail"/>
-                        <h:inputText id="mail" value=""/>
-                        <h:outputLabel value="Passwort: " for="pass"/>
-                        <h:inputSecret id="pass" value=""/>
+                        <h:inputText id="mail" value="" required="true"/>
+
+                        <h:outputLabel value="Passwort: " for="passwort"/>
+                        <h:inputSecret id="passwort" value="" required="true"/>
+
+                        <h:commandButton value="Register" />
+
                     </h:panelGrid>
                 </h:form>
                 <br/>
-                <h:selectManyCheckbox style="font-family: AppleGothic;font-size: 22px;color: #FFFFFF">
+                <h:selectManyCheckbox style="font-family: AppleGothic;font-size: 22px;color: #FFFFFF" required="true">
                     <f:selectItem itemLabel="Ich akzeptiere die AGBs*"/>
                 </h:selectManyCheckbox>
                 <br/>
                 <h:form>
-                    <h:commandLink styleClass="button" action="app" value="Account erstellen"/>
+                    <h:commandLink styleClass="button" value="Account erstellen" action="app"/>
                 </h:form>
             </div>
         </div>
