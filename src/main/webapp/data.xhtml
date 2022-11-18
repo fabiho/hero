@@ -45,7 +45,7 @@
         </div>
         <div class="frame">
             <h1 style="color: black">CO2-Emissionen in Millionen Tonnen</h1>
-            <div>
+            <h:form>
                 <!-- Daten erfassen -->
                 <p:commandButton value="Forschungsdaten erfassen"
                                  type="button"
@@ -56,14 +56,14 @@
                 <p:dialog header="Erfassung von neuen Forschungsdaten" widgetVar="dlg1" minHeight="40" width="600" showEffect="fade">
                     <h:form>
                         <h:panelGrid columns="1">
-                            <h:outputLabel value="Land auswählen: "/>
-                            <p:selectOneMenu value="#{selectOneMenuView.country}" converter="#{countryConverter}"
+                            <h:outputLabel value="Land: "/>
+                            <p:selectOneMenu value="#{selectOneMenuView.selectedCountry}" converter="#{countryConverter}"
                                              panelStyle="width:180px" effect="fade" var="c"
                                              filter="true" filterMatchMode="startsWith">
 
+                                <f:selectItem itemLabel="Auswählen" itemValue="#{null}" noSelectionOption="true"/>
                                 <f:selectItems value="#{selectOneMenuView.countries}" var="country"
-                                               itemLabel="#{country.country_name}" itemValue="#{country}"/>
-
+                                                itemValue="#{country}" itemLabel="#{country.country_name}"/>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Name"/>
@@ -72,10 +72,9 @@
                                 </p:column>
 
                                 <f:facet name="footer">
-                                    <h:outputText value="#{selectOneMenuView.countries.size()} Länder"
+                                    <h:outputText value="#{selectOneMenuView.countries.size()} countries"
                                                   style="font-weight:bold;" styleClass="py-1 block"/>
                                 </f:facet>
-
                             </p:selectOneMenu>
 
                             <h:outputLabel value="Für welches Jahr?"/>
@@ -97,7 +96,7 @@
                         <p:commandButton type="button" value="Speichern" style="width: 7rem;background-color: darksalmon;border: none;box-shadow: none" />
                     </f:facet>
                 </p:dialog>
-            </div>
+            </h:form>
             <h:form>
                 <p:dataTable var="c" value="#{countryDAO.findAll()}" reflow="true" rows="10" paginator="true"
                              style="font-family: AppleGothic;font-size: 18px">
@@ -154,7 +153,7 @@
                                     </ui:repeat>
 
                                     <h:outputLabel value="Jahr auswählen "/>
-                                    <p:selectOneMenu value="#{selectOneMenuView.country}" converter="#{countryConverter}"
+                                    <p:selectOneMenu value="#{selectOneMenuView.selectedCountry}" converter="#{countryConverter}"
                                                      panelStyle="width:180px" effect="fade" var="c"
                                                      filter="true" filterMatchMode="startsWith">
 

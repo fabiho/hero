@@ -49,12 +49,12 @@
                 <h3 style="color: black">(in Millionen Tonnen)</h3>
                 <h:outputLabel value="Land: " for="selectCountry"/>
                 <p:selectOneMenu id="selectCountry"
-                                 value="#{selectOneMenuView.country}"
+                                 value="#{selectOneMenuView.selectedCountry}"
                                  var="c"
                                  panelStyle="width:180px" effect="fade"
                                  filter="true" filterMatchMode="startsWith">
 
-                    <f:selectItem itemLabel="Wählen Sie ein Land aus" value="#{null}" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="auswählen" value="#{null}" noSelectionOption="true"/>
                     <f:selectItems value="#{selectOneMenuView.countries}" var="country"
                                    itemLabel="#{country.country_name}" itemValue="#{country}"/>
                     <p:ajax listener="#{heroBean.selectCountry(country)}" update="LineChart" />

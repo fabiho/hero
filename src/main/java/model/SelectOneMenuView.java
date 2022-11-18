@@ -17,7 +17,7 @@ public class SelectOneMenuView {
     private String rtl;
     private String hideNoSelectOption;
 
-    private Country country;
+    private Country selectedCountry;
     private List<Country> countries;
 
     private String option;
@@ -25,8 +25,6 @@ public class SelectOneMenuView {
 
     private String longItemLabel;
     private String labeled;
-
-    private String icon = "flag";
 
     @Inject
     private CountryDAO service;
@@ -68,12 +66,12 @@ public class SelectOneMenuView {
         this.rtl = rtl;
     }
 
-    public Country getCountry() {
-        return country;
+    public Country getSelectedCountry() {
+        return selectedCountry;
     }
 
-    public void setCountry(Country country) {
-        this.country = country;
+    public void setSelectedCountry(Country selectedCountry) {
+        this.selectedCountry = selectedCountry;
     }
 
     public List<Country> getCountries() {
@@ -110,14 +108,6 @@ public class SelectOneMenuView {
 
     public void setLabeled(String labeled) {
         this.labeled = labeled;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
     }
 
     public void setCountries(List<Country> countries) {
