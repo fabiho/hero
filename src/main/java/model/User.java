@@ -1,10 +1,24 @@
 package model;
 
+import DAO.UserDAO;
+import Login.SessionUtils;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import javax.annotation.ManagedBean;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+import java.io.Serializable;
+
+@ManagedBean
+@SessionScoped
 @Entity
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1094801825228386363L;
+    private static String msg;
 
     @Id
     private Integer userId;
@@ -20,15 +34,29 @@ public class User {
 
     }
 
-    public User(Integer userId, String anrede, String vorname, String nachname, String firma, String position, String mail, String passwort) {
-        this.userId = userId;
-        this.anrede = anrede;
-        this.vorname = vorname;
-        this.nachname = nachname;
-        this.firma = firma;
-        this.position = position;
-        this.mail = mail;
-        this.passwort = passwort;
+    //validate Login
+    public String validateUsernamePassword() {
+        boolean valid = UserDAO.validate(mail, passwort);
+        if (valid) {
+            HttpSession session = SessionUtils.getSession();
+            session.setAttribute("name", mail);
+            return "admin";
+        } else {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Falsche Mail oder Passwort",
+                            "Bitte gib eine korrekte Mail oder Passwort ein")
+            );
+            return "login";
+        }
+    }
+
+    //logout event, invalidate session
+    public String logout() {
+        HttpSession session = SessionUtils.getSession();
+        session.invalidate();
+        return "login";
     }
 
     // Gett + Setter

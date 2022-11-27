@@ -48,16 +48,14 @@
                 <h1 style="color: black">CO2-Emissionen pro Land in den Jahren 1990 bis 2020</h1>
                 <h3 style="color: black">(in Millionen Tonnen)</h3>
                 <h:outputLabel value="Land: " for="selectCountry"/>
-                <p:selectOneMenu id="selectCountry"
-                                 value="#{selectOneMenuView.selectedCountry}"
-                                 var="c"
-                                 panelStyle="width:180px" effect="fade"
-                                 filter="true" filterMatchMode="startsWith">
+                <p:selectOneMenu id="selectCountry" value="#{selectOneMenuView.selectedCountry}" converter="#{countryConverter}"
+                                 panelStyle="width:180px" effect="fade" var="c"
+                                 filter="true" filterMatchMode="startsWith"
+                                 valueChangeListener="#{heroBean.selectCountry(c)}">
 
-                    <f:selectItem itemLabel="auswählen" value="#{null}" noSelectionOption="true"/>
                     <f:selectItems value="#{selectOneMenuView.countries}" var="country"
                                    itemLabel="#{country.country_name}" itemValue="#{country}"/>
-                    <p:ajax listener="#{heroBean.selectCountry(country)}" update="LineChart" />
+                    <p:ajax listener="#{heroBean.selectCountry(c)}" update="LineChart"/>
 
                     <p:column>
                         <h:outputText value="#{c.country_name}"/>
