@@ -8,7 +8,7 @@ public class DataConnect {
 
     public static Connection getConnection() {
         try {
-            Class.forName("javax.persistence.jdbc.driver");
+            Class.forName("org.mariadb.jdbc.Driver");
             Connection con = (Connection) DriverManager.getConnection(
                     "jdbc:mariadb://localhost:3306/LikeHeroToZero", "root", "start");
             return con;

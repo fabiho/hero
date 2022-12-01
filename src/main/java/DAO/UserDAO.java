@@ -37,9 +37,9 @@ public class UserDAO {
 
         try {
             con = DataConnect.getConnection();
-            ps =con.prepareStatement("Select mail, passwort from USER where mail = ? and passwort = ?");
+            ps = con.prepareStatement("Select mail, passwort from USER where mail = ? and passwort = ?");
             ps.setString(1, mail);
-            ps.setString(2,passwort);
+            ps.setString(2, passwort);
 
             ResultSet rs = ps.executeQuery();
 

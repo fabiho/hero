@@ -12,8 +12,8 @@ import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 
-@Named
 @SessionScoped
+@Named
 @Entity
 public class User implements Serializable {
 
@@ -43,7 +43,7 @@ public class User implements Serializable {
             return "admin";
         } else {
             FacesContext.getCurrentInstance().addMessage(
-                    null,
+                    "loginMessage",
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Falsche Mail oder Passwort",
                             "Bitte gib eine korrekte Mail oder Passwort ein")

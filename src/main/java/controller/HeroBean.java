@@ -2,7 +2,6 @@ package controller;
 
 import model.Country;
 
-import javax.annotation.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Named
-@ManagedBean
 @ViewScoped
 public class HeroBean implements Serializable {
 

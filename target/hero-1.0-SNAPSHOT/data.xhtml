@@ -100,9 +100,10 @@
             <h:form>
                 <p:dataTable var="c" value="#{countryDAO.findAll()}" reflow="true" rows="10" paginator="true"
                              style="font-family: AppleGothic;font-size: 18px">
-                        <p:column headerText="Code">
-                            <h:outputText value="#{c.country_code}"/>
-                        </p:column>
+
+                    <p:column headerText="Code">
+                        <h:outputText value="#{c.country_code}"/>
+                    </p:column>
 
                     <p:column headerText="Name">
                         <h:outputText value="#{c.country_name}"/>
