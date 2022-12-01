@@ -50,13 +50,12 @@
                         <h:panelGrid columns="1" style="color: #FFFFFF;font-size: 22px">
                             <h:outputLabel value="Benutzername:" for="name"/>
                             <h:inputText id="name" value="#{user.mail}"/>
-                            <h:message for="name"></h:message>
                             <h:outputLabel value="Passwort:" for="pass"/>
                             <h:inputSecret id="pass" value="#{user.passwort}"/>
+                            <h:message for="name"></h:message>
                             <h:message for="pass"></h:message>
                         </h:panelGrid>
                 </h:form>
-                <br/>
                 <h:form>
                     <h:commandLink styleClass="button" action="#{user.validateUsernamePassword}" value="Anmelden"/>
                 </h:form>
