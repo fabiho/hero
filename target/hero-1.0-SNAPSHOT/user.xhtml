@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<f:view>
+    <h:head>
+        <link rel="shortcut icon" type="image/x-icon" href="img/co2.ico" />
+        <link rel="stylesheet" href="css/styles.css"/>
+        <title>LikeHeroToZero</title>
+    </h:head>
+    <h:body class="body">
+        <div class="navbar">
+            <h:form>
+                <h:commandLink styleClass="titel" action="app" value="Like Hero to Zero"/>
+            </h:form>
+            <div class="navigationStructure">
+                <div class="icon-text">
+                    <i class="pi pi-chart-line" style="font-size: 1.5rem"></i>
+                    <h:form>
+                        <h:commandLink styleClass="navigation" action="app" value="Infografiken"/>
+                    </h:form>
+                </div>
+                <div class="icon-text">
+                    <i class="pi pi-database" style="font-size: 1.5rem"></i>
+                    <h:form>
+                        <h:commandLink styleClass="navigationSelected" action="data" value="Forschungsdaten"/>
+                    </h:form>
+                </div>
+                <div class="icon-text">
+                    <i class="pi pi-book" style="font-size: 1.5rem"></i>
+                    <h:form>
+                        <h:commandLink styleClass="navigation" action="report" value="Reporte"/>
+                    </h:form>
+                </div>
+            </div>
+            <div class="icon-text">
+                <i class="pi pi-user" style="font-size: 1.5rem"></i>
+                <h:form>
+                    <h:commandLink styleClass="navigation" action="#{user.logout}" value="Logout"/>
+                </h:form>
+            </div>
+        </div>
+        <div class="frame">
+            <h:form>
+                <h:inputHidden value="#{messagesView.info()}"/>
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate/>
+                </p:messages>
+            </h:form>
+            <h1 style="color: black">CO2-Emissionen in Millionen Tonnen</h1>
+            <h:form>
+                <!-- Daten erfassen -->
+                <p:commandButton value="Forschungsdaten erfassen"
+                                 type="button"
+                                 icon="pi pi-plus"
+                                 onclick="PF('dlg1').show()"
+                                 style="background-color: darksalmon;border: none;box-shadow: none;
+                                 font-family: AppleGothic;font-size: 20px"/>
+                <p:dialog header="Erfassung von neuen Forschungsdaten" widgetVar="dlg1" minHeight="40" width="600" showEffect="fade">
+                    <h:form>
+                        <h:panelGrid columns="1">
+                            <h:outputLabel value="Land: "/>
+                            <p:selectOneMenu value="#{selectOneMenuView.selectedCountry}" converter="#{countryConverter}"
+                                             panelStyle="width:180px" effect="fade" var="c"
+                                             filter="true" filterMatchMode="startsWith">
+
+                                <f:selectItem itemLabel="Auswählen" itemValue="#{null}" noSelectionOption="true"/>
+                                <f:selectItems value="#{selectOneMenuView.countries}" var="country"
+                                                itemValue="#{country}" itemLabel="#{country.country_name}"/>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Name"/>
+                                    </f:facet>
+                                    <h:outputText value="#{c.country_name}"/>
+                                </p:column>
+
+                                <f:facet name="footer">
+                                    <h:outputText value="#{selectOneMenuView.countries.size()} countries"
+                                                  style="font-weight:bold;" styleClass="py-1 block"/>
+                                </f:facet>
+                            </p:selectOneMenu>
+
+                            <h:outputLabel value="Für welches Jahr?"/>
+                            <h:form>
+                                <p:selectOneButton value="#{selectOneButtonView.option}">
+                                    <f:selectItem itemLabel="Letztes Jahr" itemValue="Option 1"/>
+                                    <f:selectItem itemLabel="Dieses Jahr" itemValue="Option 2"/>
+                                </p:selectOneButton>
+                            </h:form>
+
+                            <h:outputLabel value="CO2-Emission: (In Millionen Tonnen)" for="newemission"/>
+                            <h:inputText id="newemission" value="" required="true">
+                                <f:validateRegex pattern="[0-9]"/>
+                            </h:inputText>
+
+                        </h:panelGrid>
+                    </h:form>
+                    <f:facet name="footer">
+                        <p:commandButton type="button" value="Speichern" style="width: 7rem;background-color: darksalmon;border: none;box-shadow: none" />
+                    </f:facet>
+                </p:dialog>
+            </h:form>
+            <h:form>
+                <p:dataTable var="c" value="#{countryDAO.findAll()}" reflow="true" rows="10" paginator="true"
+                             style="font-family: AppleGothic;font-size: 18px">
+
+                    <p:column headerText="Code">
+                        <h:outputText value="#{c.country_code}"/>
+                    </p:column>
+
+                    <p:column headerText="Name">
+                        <h:outputText value="#{c.country_name}"/>
+                    </p:column>
+
+                    <p:column headerText="1990">
+                        <h:outputText value="#{c.y1990}"/>
+                    </p:column>
+
+                    <p:column headerText="2000">
+                        <h:outputText value="#{c.y2000}"/>
+                    </p:column>
+
+                    <p:column headerText="2010">
+                        <h:outputText value="#{c.y2010}"/>
+                    </p:column>
+
+                    <p:column headerText="2015">
+                        <h:outputText value="#{c.y2015}"/>
+                    </p:column>
+
+                    <p:column headerText="2020">
+                        <h:outputText value="#{c.y2020}"/>
+                    </p:column>
+
+                    <p:column headerText="Aktuelles Jahr">
+                        <h:outputText value="#{c.y2021}"/>
+                    </p:column>
+
+                    <!-- Edit-Button -->
+                    <p:column>
+                        <p:commandButton icon="pi pi-pencil"
+                                         oncomplete="PF('dlg2').show()"
+                                         styleClass="edit-button rounded-button ui-button-success"
+                                         process="@this"
+                                         style="background-color: darksalmon;border: none;box-shadow: none"
+                                         action="#{heroBean.selectCountry(c)}"
+                                         update="editDialog">
+                        </p:commandButton>
+                        <p:dialog id="editDialog" header="Änderungsanfrage stellen" widgetVar="dlg2" minHeight="40" width="600" showEffect="fade">
+                            <h:form>
+                                <h:panelGrid columns="2" style="font-family: AppleGothic;font-size: 18px;">
+                                    <h:outputLabel value="Land: "/>
+                                    <ui:repeat var="country" value="#{heroBean.getSelectedCountry()}">
+                                        <ui:fragment >
+                                            #{country.country_name}
+                                        </ui:fragment>
+                                    </ui:repeat>
+
+                                    <h:outputLabel value="Jahr auswählen "/>
+                                    <p:selectOneMenu value="#{selectOneMenuView.selectedCountry}" converter="#{countryConverter}"
+                                                     panelStyle="width:180px" effect="fade" var="c"
+                                                     filter="true" filterMatchMode="startsWith">
+
+                                        <f:selectItems value="#{selectOneMenuView.countries}" var="country"
+                                                       itemLabel="#{country.country_code}" itemValue="#{country}"/>
+
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Name"/>
+                                            </f:facet>
+                                            <h:outputText value="#{c.country_code}"/>
+                                        </p:column>
+
+                                        <f:facet name="footer">
+                                            <h:outputText value="#{selectOneMenuView.countries.size()} countries"
+                                                          style="font-weight:bold;" styleClass="py-1 block"/>
+                                        </f:facet>
+
+                                    </p:selectOneMenu>
+
+                                    <h:outputLabel value="CO2-Emission: " for="emission"/>
+                                    <h:inputText id="emission" value="" required="true">
+                                        <f:validateRegex pattern="[0-1]"/>
+                                    </h:inputText>
+
+                                </h:panelGrid>
+                            </h:form>
+                            <f:facet name="footer">
+                                <p:commandButton
+                                        type="button"
+                                        value="Abschicken"
+                                        style="width: 7rem;background-color: darksalmon;border: none;box-shadow: none"
+                                        onclick="PF('dlg2').hide();"/>
+                            </f:facet>
+                        </p:dialog>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
+    </h:body>
+</f:view>
+</html>

@@ -52,7 +52,7 @@
 .frameLoginLeft {
     background-color: darkseagreen;
     width: 32rem;
-    height: 34rem;
+    min-height: 34rem;
     border-radius: 5px;
 
     padding: 2rem 2rem 2rem 2rem;

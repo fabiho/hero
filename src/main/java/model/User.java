@@ -40,12 +40,12 @@ public class User implements Serializable {
         if (valid) {
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("name", mail);
-            return "admin";
+            return "user";
         } else {
             FacesContext.getCurrentInstance().addMessage(
                     "loginMessage",
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Falsche Mail oder Passwort",
+                            "Die eingegebene Mail oder das Passwort ist falsch",
                             "Bitte gib eine korrekte Mail oder Passwort ein")
             );
             return "login";

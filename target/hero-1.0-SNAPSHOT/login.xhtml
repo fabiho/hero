@@ -47,13 +47,15 @@
             <div class="frameLoginLeft">
                 <h1 style="color: white">In Ihren Account einloggen</h1>
                 <h:form>
-                        <h:panelGrid columns="1" style="color: #FFFFFF;font-size: 22px">
-                            <h:outputLabel value="Benutzername:" for="name"/>
-                            <h:inputText id="name" value="#{user.mail}"/>
-                            <h:outputLabel value="Passwort:" for="pass"/>
-                            <h:inputSecret id="pass" value="#{user.passwort}"/>
-                            <h:messages id="loginMessage"></h:messages>
-                        </h:panelGrid>
+                    <h:panelGrid columns="1" style="color: #FFFFFF;font-size: 22px">
+                        <h:outputLabel value="Benutzername:" for="name"/>
+                        <h:inputText id="name" value="#{user.mail}"/>
+                        <h:outputLabel value="Passwort:" for="pass"/>
+                        <h:inputSecret id="pass" value="#{user.passwort}"/>
+                        <p:messages id="loginMessage">
+                            <p:autoUpdate/>
+                        </p:messages>
+                    </h:panelGrid>
                     <h:commandLink styleClass="button" action="#{user.validateUsernamePassword}" value="Anmelden"/>
                 </h:form>
             </div>
