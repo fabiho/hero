@@ -47,48 +47,49 @@
             <div class="frameReg">
                 <h1 style="color: white">Registrierung</h1>
                 <h:form>
-                    <h:panelGrid columns="4" style="color: #FFFFFF;font-size: 22px;width: fit-content">
+                    <h:panelGrid columns="3" style="color: #FFFFFF;font-size: 22px;width: fit-content">
                         <h:outputLabel value="Anrede: " for="anrede"/>
-                        <h:selectOneMenu id="anrede">
-                            <f:selectItem itemLabel="Wähle eine Anrede" itemValue="0"/>
-                            <f:selectItem itemLabel="Herr" itemValue="1"/>
-                            <f:selectItem itemLabel="Frau" itemValue="2"/>
-                            <f:selectItem itemLabel="Divers" itemValue="3"/>
+                        <h:selectOneMenu id="anrede" required="true" requiredMessage="Pflichtfeld">
+                            <f:selectItem itemLabel="Wähle eine Anrede" itemValue=""/>
+                            <f:selectItem itemLabel="Herr" itemValue="Herr"/>
+                            <f:selectItem itemLabel="Frau" itemValue="Frau"/>
+                            <f:selectItem itemLabel="Divers" itemValue="Divers"/>
                         </h:selectOneMenu>
-                        <h:outputLabel value=" "/>
-                        <h:outputLabel value=" "/>
+                        <p:message for="anrede"/>
 
                         <h:outputLabel value="Vorname: " for="vorname"/>
-                        <h:inputText id="vorname" value="" required="true" requiredMessage="da fehlt was">
-                            <f:validateRegex pattern="[a-zA-Z]"/>
-                        </h:inputText>
+                        <h:inputText id="vorname" value="" required="true" requiredMessage="Pflichtfeld"/>
+                        <p:message for="vorname"/>
 
                         <h:outputLabel value="Nachname: " for="name"/>
-                        <h:inputText id="name" value="" required="true"/>
+                        <h:inputText id="name" value="" required="true" requiredMessage="Pflichtfeld"/>
+                        <p:message for="name"/>
 
                         <h:outputLabel value="Firma / Institut: " for="firma"/>
-                        <h:inputText id="firma" value="" required="true"/>
+                        <h:inputText id="firma" value=""/>
+                        <p:message for="firma"/>
 
                         <h:outputLabel value="Position: " for="position"/>
                         <h:inputText id="position" value=""/>
+                        <p:message for="position"/>
 
                         <h:outputLabel value="E-Mail Adresse: " for="mail"/>
-                        <h:inputText id="mail" value="" required="true"/>
+                        <h:inputText id="mail" value="" required="true" requiredMessage="Pflichtfeld" validatorMessage="Bitte gib eine gültige Mailadresse ein">
+                            <f:validateRegex pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"/>
+                        </h:inputText>
+                        <p:message for="mail"/>
 
                         <h:outputLabel value="Passwort: " for="passwort"/>
-                        <h:inputSecret id="passwort" value="" required="true"/>
-
-                        <h:commandButton value="Register" />
+                        <h:inputSecret id="passwort" value="" required="true" requiredMessage="Pflichtfeld"/>
+                        <p:message for="passwort"/>
 
                     </h:panelGrid>
-                </h:form>
-                <br/>
-                <h:selectManyCheckbox style="font-family: AppleGothic;font-size: 22px;color: #FFFFFF" required="true">
-                    <f:selectItem itemLabel="Ich akzeptiere die AGBs*"/>
-                </h:selectManyCheckbox>
-                <br/>
-                <h:form>
-                    <h:commandLink styleClass="button" value="Account erstellen" action="app"/>
+                    <br/>
+                    <h:selectManyCheckbox style="font-family: AppleGothic;font-size: 22px;color: #FFFFFF" required="true">
+                        <f:selectItem itemLabel="Ich akzeptiere die AGBs*"/>
+                    </h:selectManyCheckbox>
+                    <br/>
+                        <h:commandLink styleClass="button" value="Account erstellen" action="app"/>
                 </h:form>
             </div>
         </div>

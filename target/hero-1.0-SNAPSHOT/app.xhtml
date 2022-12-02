@@ -55,7 +55,7 @@
 
                         <f:selectItems value="#{selectOneMenuView.countries}" var="country"
                                        itemLabel="#{country.country_name}" itemValue="#{country}"/>
-                        <f:ajax listener="#{heroBean.selectCountry(country)}" update="LineChart"/>
+                        <p:ajax listener="#{heroBean.selectCountry(country)}" update="LineChart"/>
 
                         <f:facet name="footer">
                             <h:outputText value="#{selectOneMenuView.countries.size()} Länder"

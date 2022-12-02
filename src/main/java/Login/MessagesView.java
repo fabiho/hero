@@ -16,7 +16,9 @@ public class MessagesView {
     private User user;
 
     public void info() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Hallo " + user.getVorname(), "Als angemeldeter Benutzer kannst du neue Daten hinzufügen oder Datenfehler korrigieren"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                "Hallo " + user.getAnrede() + " " + user.getVorname() + " " + user.getNachname(), 
+                "Als angemeldeter Benutzer kannst du neue Daten hinzufügen oder Datenfehler korrigieren"));
     }
 
     public void warn() {
