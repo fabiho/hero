@@ -54,4 +54,29 @@ public class UserDAO {
         }
         return false;
     }
+
+    public static String create(String anrede, String vorname, String nachname, String firma, String position, String mail, String passwort) {
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("INSERT INTO user(anrede, firma, mail, nachname, passwort, position, vorname) VALUES(?,?,?,?,?,?,?)");
+            ps.setString(1, anrede);
+            ps.setString(2, firma);
+            ps.setString(3, mail);
+            ps.setString(4, nachname);
+            ps.setString(5, passwort);
+            ps.setString(6, position);
+            ps.setString(7, vorname);
+
+            int rs = ps.executeUpdate();
+            return "Data added successfully";
+        } catch (SQLException ex) {
+            System.out.println("Login error -->" + ex.getMessage());
+        } finally {
+            DataConnect.close((org.mariadb.jdbc.Connection) con);
+        }
+        return "Ups, Data added unsuccessfully";
+    }
 }

@@ -17,9 +17,6 @@ import java.io.Serializable;
 @Entity
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1094801825228386363L;
-    private static String msg;
-
     @Id
     private Integer userId;
     private String anrede;
@@ -57,6 +54,12 @@ public class User implements Serializable {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
         return "login";
+    }
+
+    //add User
+    public String addNewUser(String anrede, String vorname, String nachname, String firma, String position, String mail, String passwort) {
+        String s = UserDAO.create(anrede, vorname, nachname, firma, position, mail, passwort);
+        return s;
     }
 
     // Gett + Setter

@@ -49,7 +49,7 @@
                 <h:form>
                     <h:panelGrid columns="3" style="color: #FFFFFF;font-size: 22px;width: fit-content">
                         <h:outputLabel value="Anrede: " for="anrede"/>
-                        <h:selectOneMenu id="anrede" required="true" requiredMessage="Pflichtfeld">
+                        <h:selectOneMenu id="anrede" required="true" requiredMessage="Pflichtfeld" value="#{user.anrede}">
                             <f:selectItem itemLabel="Wähle eine Anrede" itemValue=""/>
                             <f:selectItem itemLabel="Herr" itemValue="Herr"/>
                             <f:selectItem itemLabel="Frau" itemValue="Frau"/>
@@ -58,38 +58,36 @@
                         <p:message for="anrede"/>
 
                         <h:outputLabel value="Vorname: " for="vorname"/>
-                        <h:inputText id="vorname" value="" required="true" requiredMessage="Pflichtfeld"/>
+                        <h:inputText id="vorname" value="#{user.vorname}" required="true" requiredMessage="Pflichtfeld"/>
                         <p:message for="vorname"/>
 
                         <h:outputLabel value="Nachname: " for="name"/>
-                        <h:inputText id="name" value="" required="true" requiredMessage="Pflichtfeld"/>
+                        <h:inputText id="name" value="#{user.nachname}" required="true" requiredMessage="Pflichtfeld"/>
                         <p:message for="name"/>
 
                         <h:outputLabel value="Firma / Institut: " for="firma"/>
-                        <h:inputText id="firma" value=""/>
+                        <h:inputText id="firma" value="#{user.firma}"/>
                         <p:message for="firma"/>
 
                         <h:outputLabel value="Position: " for="position"/>
-                        <h:inputText id="position" value=""/>
+                        <h:inputText id="position" value="#{user.position}"/>
                         <p:message for="position"/>
 
                         <h:outputLabel value="E-Mail Adresse: " for="mail"/>
-                        <h:inputText id="mail" value="" required="true" requiredMessage="Pflichtfeld" validatorMessage="Bitte gib eine gültige Mailadresse ein">
+                        <h:inputText id="mail" value="#{user.mail}" required="true" requiredMessage="Pflichtfeld" validatorMessage="Bitte gib eine gültige Mailadresse ein">
                             <f:validateRegex pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"/>
                         </h:inputText>
                         <p:message for="mail"/>
 
                         <h:outputLabel value="Passwort: " for="passwort"/>
-                        <h:inputSecret id="passwort" value="" required="true" requiredMessage="Pflichtfeld"/>
+                        <h:inputSecret id="passwort" value="#{user.passwort}" required="true" requiredMessage="Pflichtfeld" validatorMessage="Das Passwort muss mindest 8 Zeichen lang sein">
+                                <f:validateLength minimum="8"/>
+                        </h:inputSecret>
                         <p:message for="passwort"/>
 
                     </h:panelGrid>
                     <br/>
-                    <h:selectManyCheckbox style="font-family: AppleGothic;font-size: 22px;color: #FFFFFF" required="true">
-                        <f:selectItem itemLabel="Ich akzeptiere die AGBs*"/>
-                    </h:selectManyCheckbox>
-                    <br/>
-                        <h:commandLink styleClass="button" value="Account erstellen" action="app"/>
+                    <h:commandLink styleClass="button" value="Account erstellen" action="#{user.addNewUser}"/>
                 </h:form>
             </div>
         </div>

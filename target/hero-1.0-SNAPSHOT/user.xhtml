@@ -26,7 +26,7 @@
                 <div class="icon-text">
                     <i class="pi pi-database" style="font-size: 1.5rem"></i>
                     <h:form>
-                        <h:commandLink styleClass="navigationSelected" action="data" value="Forschungsdaten"/>
+                        <h:commandLink styleClass="navigationSelected" action="user" value="Forschungsdaten"/>
                     </h:form>
                 </div>
                 <div class="icon-text">
@@ -111,7 +111,7 @@
                 <p:dataTable var="c" value="#{countryDAO.findAll()}" reflow="true" rows="10" paginator="true"
                              style="font-family: AppleGothic;font-size: 18px">
 
-                    <p:column headerText="Code">
+                    <p:column headerText="Kürzel">
                         <h:outputText value="#{c.country_code}"/>
                     </p:column>
 
@@ -139,7 +139,11 @@
                         <h:outputText value="#{c.y2020}"/>
                     </p:column>
 
-                    <p:column headerText="Aktuelles Jahr">
+                    <p:column headerText="2021">
+                        <h:outputText value="#{c.y2021}"/>
+                    </p:column>
+
+                    <p:column headerText="2022">
                         <h:outputText value="#{c.y2021}"/>
                     </p:column>
 
