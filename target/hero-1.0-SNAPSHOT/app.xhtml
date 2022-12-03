@@ -53,16 +53,26 @@
                                      panelStyle="width:180px" effect="fade"
                                      filter="true" filterMatchMode="startsWith" converter="countryConverter">
 
+                        <f:selectItem itemLabel="Auswählen" itemValue="" noSelectionOption="true"/>
                         <f:selectItems value="#{selectOneMenuView.countries}" var="country"
-                                       itemLabel="#{country.country_name}" itemValue="#{country}"/>
-                        <p:ajax listener="#{heroBean.selectCountry(country)}" update="LineChart"/>
+                                       itemLabel="#{country.country_name}" itemValue="#{country}">
+                        </f:selectItems>
 
                         <f:facet name="footer">
                             <h:outputText value="#{selectOneMenuView.countries.size()} Länder"
                                           style="font-weight:bold;" styleClass="py-1 block"/>
                         </f:facet>
-
                     </p:selectOneMenu>
+                    <br/>
+                    <br/>
+                    <p:commandButton styleClass="buttonSmall"
+                                     process="@this"
+                                     action="#{heroBean.selectCountry(country)}"
+                                     update="LineChart" value="CommandButton"
+                                     style="background-color: darksalmon;border: none;box-shadow: none">
+                    </p:commandButton>
+                    <br/>
+                    <p:commandLink action="#{heroBean.selectCountry(country)}" value="CommandLink" styleClass="buttonSmall"/>
                 </h:form>
                 <br/>
                 <br/>
