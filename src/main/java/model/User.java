@@ -27,6 +27,8 @@ public class User implements Serializable {
     private String mail;
     private String passwort;
 
+    private static Boolean isLoggedIn = false;
+
     public User() {
 
     }
@@ -37,6 +39,7 @@ public class User implements Serializable {
         if (valid) {
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("name", mail);
+            setIsLoggedIn(true);
             return "user";
         } else {
             FacesContext.getCurrentInstance().addMessage(
@@ -53,7 +56,12 @@ public class User implements Serializable {
     public String logout() {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
+        setIsLoggedIn(false);
         return "login";
+    }
+
+    public boolean isLoggedIn(){
+        return isLoggedIn; //always false by default
     }
 
     //add User
@@ -110,5 +118,11 @@ public class User implements Serializable {
     }
     public void setPasswort(String passwort) {
         this.passwort = passwort;
+    }
+    public static Boolean getIsLoggedIn() {
+        return isLoggedIn;
+    }
+    public static void setIsLoggedIn(Boolean isLoggedIn) {
+        User.isLoggedIn = isLoggedIn;
     }
 }

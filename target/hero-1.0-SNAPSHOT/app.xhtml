@@ -25,8 +25,11 @@
                 </div>
                 <div class="icon-text">
                     <i class="pi pi-database" style="font-size: 1.5rem"></i>
-                    <h:form>
+                    <h:form rendered="#{user.isLoggedIn() eq false}">
                         <h:commandLink styleClass="navigation" action="data" value="Forschungsdaten"/>
+                    </h:form>
+                    <h:form rendered="#{user.isLoggedIn() eq true}">
+                        <h:commandLink styleClass="navigation" action="user" value="Forschungsdaten"/>
                     </h:form>
                 </div>
                 <div class="icon-text">
@@ -38,8 +41,11 @@
             </div>
             <div class="icon-text">
                 <i class="pi pi-user" style="font-size: 1.5rem"></i>
-                <h:form>
+                <h:form rendered="#{user.isLoggedIn() eq false}">
                     <h:commandLink styleClass="navigation" action="login" value="Login"/>
+                </h:form>
+                <h:form rendered="#{user.isLoggedIn() eq true}">
+                    <h:commandLink styleClass="navigation" action="#{user.logout}" value="Logout"/>
                 </h:form>
             </div>
         </div>
