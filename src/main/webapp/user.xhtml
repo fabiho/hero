@@ -13,7 +13,8 @@
     </h:head>
     <h:body class="body">
         <div class="navbar">
-            <h:form>
+            <h:form styleClass="titel">
+                <h:graphicImage value="img/co2_white.png"/>
                 <h:commandLink styleClass="titel" action="app" value="Like Hero to Zero"/>
             </h:form>
             <div class="navigationStructure">
@@ -39,7 +40,7 @@
             <div class="icon-text">
                 <i class="pi pi-user" style="font-size: 1.5rem"></i>
                 <h:form>
-                    <h:commandLink styleClass="navigation" action="#{user.logout}" value="Logout"/>
+                    <h:commandLink styleClass="navigation" action="#{userBean.logout}" value="Logout"/>
                 </h:form>
             </div>
         </div>
@@ -154,13 +155,13 @@
                                          styleClass="edit-button rounded-button ui-button-success"
                                          process="@this"
                                          style="background-color: darksalmon;border: none;box-shadow: none"
-                                         action="#{heroBean.selectCountry(c)}"
+                                         action="#{countryBean.selectCountry(c)}"
                                          update="editDialog">
                         </p:commandButton>
                         <p:dialog id="editDialog" header="Daten ändern" widgetVar="dlg2" minHeight="40" width="600" showEffect="fade">
                             <h:form>
                                 <h:panelGrid columns="1" style="border: white">
-                                    <ui:repeat var="country" value="#{heroBean.getSelectedCountry()}">
+                                    <ui:repeat var="country" value="#{countryBean.getSelectedCountry()}">
                                         <ui:fragment >
                                             <b>#{country.country_name}</b>
                                         </ui:fragment>

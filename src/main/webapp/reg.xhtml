@@ -13,7 +13,8 @@
     </h:head>
     <h:body class="body">
         <div class="navbar">
-            <h:form>
+            <h:form styleClass="titel">
+                <h:graphicImage value="img/co2_white.png"/>
                 <h:commandLink styleClass="titel" action="app" value="Like Hero to Zero"/>
             </h:form>
             <div class="navigationStructure">
@@ -87,7 +88,7 @@
 
                     </h:panelGrid>
                     <br/>
-                    <h:commandLink styleClass="button" value="Account erstellen" action="#{user.addNewUser}"/>
+                    <h:commandLink styleClass="button" value="Account erstellen" action="#{userBean.addNewUser()}"/>
                 </h:form>
             </div>
         </div>

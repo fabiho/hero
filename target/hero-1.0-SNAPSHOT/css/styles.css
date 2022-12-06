@@ -51,6 +51,17 @@
     padding: 2rem 2rem 2rem 2rem;
     margin: 10rem 5rem 1rem 5rem;
 }
+.frame2 {
+    background-color: white;
+    width: auto;
+    height: fit-content;
+    border-style: solid;
+    border-color: lightgrey;
+    border-radius: 5px;
+
+    padding: 2rem 2rem 2rem 2rem;
+    margin: 2rem 5rem 1rem 5rem;
+}
 .frameLogin {
     background-color: white;
     width: fit-content;
@@ -102,6 +113,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+.img_report {
+    height: 15rem;
+    display: flex;
+    float: right;
+    margin: 1rem;
+
 }
 .infoGrid {
     display: grid;
@@ -170,6 +188,7 @@
 
     display: flex;
     justify-content: left;
+    align-items: center;
 }
 
 i {
