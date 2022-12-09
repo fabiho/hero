@@ -47,7 +47,7 @@
         <div class="frame">
             <h1 style="color: black">CO2-Emissionen in Millionen Tonnen</h1>
             <h:form>
-                <p:dataTable var="c" value="#{countryDAO.findAll()}" reflow="true" rows="10" paginator="true"
+                <p:dataTable var="c" value="#{dtEditView.countryList}" reflow="true" rows="10" paginator="true"
                              style="font-family: AppleGothic;font-size: 18px">
 
                     <p:column headerText="Kürzel">
@@ -74,15 +74,15 @@
                         <h:outputText value="#{c.y2015}"/>
                     </p:column>
 
-                    <p:column headerText="2020">
-                        <h:outputText value="#{c.y2020}"/>
+                    <p:column headerText="2017">
+                        <h:outputText value="#{c.y2017}"/>
+                    </p:column>
+
+                    <p:column headerText="2019">
+                        <h:outputText value="#{c.y2019}"/>
                     </p:column>
 
                     <p:column headerText="2021">
-                        <h:outputText value="#{c.y2021}"/>
-                    </p:column>
-
-                    <p:column headerText="2022">
                         <h:outputText value="#{c.y2021}"/>
                     </p:column>
 

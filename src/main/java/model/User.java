@@ -3,11 +3,11 @@ package model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 
-@SessionScoped
+@RequestScoped
 @Named
 @Entity
 public class User implements Serializable {

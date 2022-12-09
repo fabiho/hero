@@ -20,6 +20,7 @@ public class CountryDAO {
         return allCountry;
     }
 
+
     public void saveCountry (Country country) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction t = em.getTransaction();

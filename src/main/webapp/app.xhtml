@@ -61,8 +61,8 @@
                                      filter="true" filterMatchMode="startsWith" converter="countryConverter">
 
                         <f:selectItem itemLabel="Auswählen" itemValue="" noSelectionOption="true"/>
-                        <f:selectItems value="#{selectOneMenuView.countries}" var="country"
-                                       itemLabel="#{country.country_name}" itemValue="#{country}">
+                        <f:selectItems value="#{selectOneMenuView.countries}" var="c"
+                                       itemLabel="#{c.country_name}" itemValue="#{c}">
                         </f:selectItems>
 
                         <f:facet name="footer">
@@ -74,12 +74,12 @@
                     <br/>
                     <p:commandButton styleClass="buttonSmall"
                                      process="@this"
-                                     action="#{CountryBean.selectCountry(country)}"
+                                     action="#{countryBean.selectCountry(c)}"
                                      update="LineChart" value="CommandButton"
                                      style="background-color: darksalmon;border: none;box-shadow: none">
                     </p:commandButton>
                     <br/>
-                    <p:commandLink action="#{CountryBean.selectCountry(country)}" value="CommandLink" styleClass="buttonSmall"/>
+                    <p:commandLink action="#{countryBean.selectCountry(c)}" value="CommandLink" styleClass="buttonSmall"/>
                 </h:form>
                 <br/>
                 <br/>

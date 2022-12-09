@@ -20,6 +20,9 @@ public class SelectOneMenuView {
     private Country selectedCountry;
     private List<Country> countries;
 
+    private String year;
+    private List<String> years;
+
     private String option;
     private List<String> options;
 
@@ -34,6 +37,9 @@ public class SelectOneMenuView {
 
         //countries
         countries = service.findAll();
+
+        //years
+        //years = service.findAllYears();
 
         //options
         options = new ArrayList<>();
@@ -120,5 +126,21 @@ public class SelectOneMenuView {
 
     public void setService(CountryDAO service) {
         this.service = service;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public List<String> getYears() {
+        return years;
+    }
+
+    public void setYears(List<String> years) {
+        this.years = years;
     }
 }

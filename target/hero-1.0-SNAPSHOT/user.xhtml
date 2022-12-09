@@ -44,73 +44,16 @@
                 </h:form>
             </div>
         </div>
-        <div class="frame">
-            <h:form>
-                <h:inputHidden value="#{messagesView.info()}"/>
-                <p:messages id="messages" showDetail="true" closable="true">
-                    <p:autoUpdate/>
-                </p:messages>
-            </h:form>
-            <h1 style="color: black">CO2-Emissionen in Millionen Tonnen</h1>
-            <h:form>
-                <!-- Daten erfassen -->
-                <p:commandButton value="Forschungsdaten erfassen"
-                                 type="button"
-                                 icon="pi pi-plus"
-                                 onclick="PF('dlg1').show()"
-                                 style="background-color: darksalmon;border: none;box-shadow: none;
-                                 font-family: AppleGothic;font-size: 20px"/>
-                <p:dialog header="Erfassung von neuen Forschungsdaten" widgetVar="dlg1" minHeight="40" width="600" showEffect="fade">
-                    <h:form>
-                        <h:panelGrid columns="1">
-                            <h:outputLabel value="Land"/>
-                            <p:selectOneMenu value="#{selectOneMenuView.selectedCountry}" converter="#{countryConverter}"
-                                             panelStyle="width:180px" effect="fade" var="c"
-                                             filter="true" filterMatchMode="startsWith">
+        <div class="frame" style="background-color: darkseagreen ;">
+            <h1 style="color: white">CO2-Emissionen in Millionen Tonnen</h1>
+            <h:form id="form">
+                <p:growl id="msgs" showDetail="true"/>
 
-                                <f:selectItem itemLabel="Auswählen" itemValue="" noSelectionOption="true"/>
-                                <f:selectItems value="#{selectOneMenuView.countries}" var="country"
-                                                itemValue="#{country}" itemLabel="#{country.country_name}"/>
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Name"/>
-                                    </f:facet>
-                                    <h:outputText value="#{c.country_name}"/>
-                                </p:column>
+                <p:dataTable var="c" value="#{dtEditView.countryList}" reflow="true" rows="10" paginator="true"
+                             style="font-family: AppleGothic;font-size: 18px;" editable="true">
 
-                                <f:facet name="footer">
-                                    <h:outputText value="#{selectOneMenuView.countries.size()} countries"
-                                                  style="font-weight:bold;" styleClass="py-1 block"/>
-                                </f:facet>
-                            </p:selectOneMenu>
-
-                            <h:outputLabel value="Für welches Jahr?"/>
-
-                            <p:selectOneButton value="#{selectOneButtonView.option}">
-                                <f:selectItem itemLabel="Letztes Jahr" itemValue="Option 1"/>
-                                <f:selectItem itemLabel="Dieses Jahr" itemValue="Option 2"/>
-                            </p:selectOneButton>
-
-
-                            <h:outputLabel value="CO2-Emission (In Millionen Tonnen)" for="newemission"/>
-                            <h:inputText id="newemission" value="" required="true">
-                                <f:validateRegex pattern="[0-9]"/>
-                            </h:inputText>
-
-                        </h:panelGrid>
-                    </h:form>
-                    <f:facet name="footer">
-                        <p:commandButton
-                                type="button"
-                                value="Speichern"
-                                style="width: fit-content;background-color: darksalmon;border: none;box-shadow: none"
-                                onclick="PF('dlg1').hide();"/>
-                    </f:facet>
-                </p:dialog>
-            </h:form>
-            <h:form>
-                <p:dataTable var="c" value="#{countryDAO.findAll()}" reflow="true" rows="10" paginator="true"
-                             style="font-family: AppleGothic;font-size: 18px">
+                    <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs"/>
+                    <p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" update=":form:msgs"/>
 
                     <p:column headerText="Kürzel">
                         <h:outputText value="#{c.country_code}"/>
@@ -121,96 +64,86 @@
                     </p:column>
 
                     <p:column headerText="1990">
-                        <h:outputText value="#{c.y1990}"/>
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{c.y1990}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{c.y1990}" />
+                            </f:facet>
+                        </p:cellEditor>
                     </p:column>
 
                     <p:column headerText="2000">
-                        <h:outputText value="#{c.y2000}"/>
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{c.y2000}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{c.y2000}" />
+                            </f:facet>
+                        </p:cellEditor>
                     </p:column>
 
                     <p:column headerText="2010">
-                        <h:outputText value="#{c.y2010}"/>
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{c.y2010}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{c.y2010}" />
+                            </f:facet>
+                        </p:cellEditor>
                     </p:column>
 
                     <p:column headerText="2015">
-                        <h:outputText value="#{c.y2015}"/>
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{c.y2015}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{c.y2015}" />
+                            </f:facet>
+                        </p:cellEditor>
                     </p:column>
 
-                    <p:column headerText="2020">
-                        <h:outputText value="#{c.y2020}"/>
+                    <p:column headerText="2017">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{c.y2017}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{c.y2017}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="2019">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{c.y2019}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{c.y2019}" />
+                            </f:facet>
+                        </p:cellEditor>
                     </p:column>
 
                     <p:column headerText="2021">
-                        <h:outputText value="#{c.y2021}"/>
-                    </p:column>
-
-                    <p:column headerText="2022">
-                        <h:outputText value="#{c.y2021}"/>
-                    </p:column>
-
-                    <!-- Edit-Button -->
-                    <p:column>
-                        <p:commandButton icon="pi pi-pencil"
-                                         oncomplete="PF('dlg2').show()"
-                                         styleClass="edit-button rounded-button ui-button-success"
-                                         process="@this"
-                                         style="background-color: darksalmon;border: none;box-shadow: none"
-                                         action="#{countryBean.selectCountry(c)}"
-                                         update="editDialog">
-                        </p:commandButton>
-                        <p:dialog id="editDialog" header="Daten ändern" widgetVar="dlg2" minHeight="40" width="600" showEffect="fade">
-                            <h:form>
-                                <h:panelGrid columns="1" style="border: white">
-                                    <ui:repeat var="country" value="#{countryBean.getSelectedCountry()}">
-                                        <ui:fragment >
-                                            <b>#{country.country_name}</b>
-                                        </ui:fragment>
-                                    </ui:repeat>
-
-                                    <br/>
-
-                                    <h:outputLabel value="Jahr auswählen"/>
-                                    <p:selectOneMenu value="#{selectOneMenuView.selectedCountry}" converter="#{countryConverter}"
-                                                     panelStyle="width:180px" effect="fade" var="c"
-                                                     filter="true" filterMatchMode="startsWith">
-
-                                        <f:selectItem itemLabel="Auswählen" itemValue="" noSelectionOption="true"/>
-                                        <f:selectItems value="#{selectOneMenuView.countries}" var="country"
-                                                       itemLabel="#{country.country_code}" itemValue="#{country}"/>
-
-                                        <p:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Name"/>
-                                            </f:facet>
-                                            <h:outputText value="#{c.country_code}"/>
-                                        </p:column>
-
-                                        <f:facet name="footer">
-                                            <h:outputText value="#{selectOneMenuView.countries.size()} countries"
-                                                          style="font-weight:bold;" styleClass="py-1 block"/>
-                                        </f:facet>
-
-                                    </p:selectOneMenu>
-
-                                    <br/>
-
-                                    <h:outputLabel value="CO2-Emission (in Millionen Tonnen)" for="emission"/>
-                                    <h:outputLabel value=""/>
-                                    <h:inputText id="emission" value="" required="true">
-                                        <f:validateRegex pattern="[0-9]"/>
-                                    </h:inputText>
-
-                                </h:panelGrid>
-                            </h:form>
-                            <f:facet name="footer">
-                                <p:commandButton
-                                        type="button"
-                                        value="Überschreiben"
-                                        style="width: fit-content;background-color: darksalmon;border: none;box-shadow: none"
-                                        onclick="PF('dlg2').hide();"/>
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{c.y2021}"/>
                             </f:facet>
-                        </p:dialog>
+                            <f:facet name="input">
+                                <p:inputText value="#{c.y2021}" />
+                            </f:facet>
+                        </p:cellEditor>
                     </p:column>
+
+                    <p:column style="width:6rem">
+                        <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                    </p:column>
+
                 </p:dataTable>
             </h:form>
         </div>
