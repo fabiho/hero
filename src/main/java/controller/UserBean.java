@@ -67,11 +67,6 @@ public class UserBean implements Serializable {
         return isLoggedIn; //always false by default
     }
 
-    //add User
-    public String addNewUser(String anrede, String vorname, String nachname, String firma, String position, String mail, String passwort) {
-        String s = UserDAO.create(anrede, vorname, nachname, firma, position, mail, passwort);
-        return s;
-    }
 
     // Gett + Setter
     public static Boolean getIsLoggedIn() {

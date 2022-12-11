@@ -35,6 +35,12 @@ public class MessagesView {
                 "Als angemeldeter Benutzer kannst du neue Daten hinzufügen oder Datenfehler korrigieren"));
     }
 
+    public void success() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                "Registrierung erfolgreich",
+                "Melde dich jetzt direkt an"));
+    }
+
     public void warn() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning", "Message Content"));
     }

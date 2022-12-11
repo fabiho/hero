@@ -27,6 +27,7 @@ public class CountryDAO {
         t.begin();
         em.merge(country);
         t.commit();
+        em.close();
     }
 
 

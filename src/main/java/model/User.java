@@ -1,6 +1,8 @@
 package model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import javax.enterprise.context.RequestScoped;
@@ -13,6 +15,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
     private String anrede;
     private String vorname;
