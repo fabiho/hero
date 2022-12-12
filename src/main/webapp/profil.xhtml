@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<f:view>
+    <h:head>
+        <link rel="shortcut icon" type="image/x-icon" href="img/co2.ico" />
+        <link rel="stylesheet" href="css/styles.css"/>
+        <title>LikeHeroToZero</title>
+    </h:head>
+    <h:body class="body">
+        <div class="navbar">
+            <h:form styleClass="titel">
+                <h:graphicImage value="img/co2_white.png"/>
+                <h:commandLink styleClass="titel" action="app" value="Like Hero to Zero"/>
+            </h:form>
+            <div class="navigationStructure">
+                <div class="icon-text">
+                    <i class="pi pi-chart-line" style="font-size: 1.5rem"></i>
+                    <h:form>
+                        <h:commandLink styleClass="navigation" action="app" value="Infografiken"/>
+                    </h:form>
+                </div>
+                <div class="icon-text">
+                    <i class="pi pi-database" style="font-size: 1.5rem"></i>
+                    <h:form>
+                        <h:commandLink styleClass="navigation" action="user" value="Forschungsdaten"/>
+                    </h:form>
+                </div>
+                <div class="icon-text">
+                    <i class="pi pi-book" style="font-size: 1.5rem"></i>
+                    <h:form>
+                        <h:commandLink styleClass="navigation" action="report" value="Reporte"/>
+                    </h:form>
+                </div>
+            </div>
+            <div class="icon-text">
+                <i class="pi pi-user" style="font-size: 1.5rem"></i>
+                <h:form>
+                    <h:commandLink styleClass="navigationSelected" action="profil" value="Profil"/>
+                </h:form>
+            </div>
+        </div>
+        <div class="frameLogin">
+            <div class="frameReg">
+                <h1 style="color: white">Dein Profil</h1>
+                <h:form>
+                    <h:panelGrid columns="2" style="color: #FFFFFF;font-size: 22px;width: fit-content">
+
+                        <h:outputLabel value="Anrede: "/>
+                        <h:outputLabel value="#{user.anrede}"/>
+
+                        <h:outputLabel value="Vorname: "/>
+                        <h:outputLabel value="#{user.vorname}"/>
+
+                        <h:outputLabel value="Nachname: " />
+                        <h:outputLabel value="#{user.nachname}"/>
+
+                        <h:outputLabel value="Firma / Institut: "/>
+                        <h:outputLabel value="#{user.firma}"/>
+
+                        <h:outputLabel value="Position: " />
+                        <h:outputLabel value="#{user.position}"/>
+
+                        <h:outputLabel value="E-Mail Adresse: "/>
+                        <h:outputLabel value="#{user.mail}"/>
+
+                        <h:outputLabel value="Passwort: " />
+                        <h:outputLabel value="#{user.passwort}"/>
+
+                    </h:panelGrid>
+                    <br/>
+                    <h:commandLink styleClass="button" value="Logout" action="#{userBean.logout}"/>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</f:view>
+</html>

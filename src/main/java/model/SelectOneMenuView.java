@@ -38,9 +38,6 @@ public class SelectOneMenuView {
         //countries
         countries = service.findAll();
 
-        //years
-        //years = service.findAllYears();
-
         //options
         options = new ArrayList<>();
         for (int i = 0; i < 20; i++) {

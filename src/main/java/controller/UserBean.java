@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
+import java.sql.SQLException;
 
 @RequestScoped
 @Named
@@ -23,23 +24,22 @@ public class UserBean implements Serializable {
     private static Boolean isLoggedIn = false;
 
     @Inject
-    private User user;
+    private User validUser;
 
     @PostConstruct
     public void init() {
 
         //Mail
-        mail = user.getMail();
-
+        mail = validUser.getMail();
         //Passwort
-        passwort = user.getPasswort();
+        passwort = validUser.getPasswort();
 
     }
 
     //validate Login
-    public String validateUsernamePassword() {
-        boolean valid = UserDAO.validate(mail, passwort);
-        if (valid) {
+    public String validateUsernamePassword() throws SQLException {
+        User validUser = UserDAO.validate(mail, passwort);
+        if (validUser != null) {
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("name", mail);
             setIsLoggedIn(true);
@@ -76,5 +76,19 @@ public class UserBean implements Serializable {
         UserBean.isLoggedIn = isLoggedIn;
     }
 
+    public String getMail() {
+        return mail;
+    }
 
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getPasswort() {
+        return passwort;
+    }
+
+    public void setPasswort(String passwort) {
+        this.passwort = passwort;
+    }
 }

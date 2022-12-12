@@ -46,7 +46,7 @@
                     <h:commandLink styleClass="navigation" action="login" value="Login"/>
                 </h:form>
                 <h:form rendered="#{userBean.isLoggedIn() eq true}">
-                    <h:commandLink styleClass="navigation" action="#{userBean.logout}" value="Logout"/>
+                    <h:commandLink styleClass="navigation" action="profil" value="Profil"/>
                 </h:form>
             </div>
         </div>
@@ -56,13 +56,13 @@
                 <h3 style="color: black">(in Millionen Tonnen)</h3>
                 <h:outputLabel value="Land: " for="selectCountry"/>
                 <h:form>
-                    <p:selectOneMenu id="selectCountry" value="#{selectOneMenuView.selectedCountry}"
+                    <p:selectOneMenu id="selectCountry"
                                      panelStyle="width:180px" effect="fade"
-                                     filter="true" filterMatchMode="startsWith" converter="countryConverter">
+                                     filter="true" filterMatchMode="startsWith" converter="countryConverter" >
 
                         <f:selectItem itemLabel="Auswählen" itemValue="" noSelectionOption="true"/>
-                        <f:selectItems value="#{selectOneMenuView.countries}" var="c"
-                                       itemLabel="#{c.country_name}" itemValue="#{c}">
+                        <f:selectItems value="#{selectOneMenuView.countries}" var="country"
+                                       itemLabel="#{country.country_name}" itemValue="#{country}">
                         </f:selectItems>
 
                         <f:facet name="footer">
@@ -74,12 +74,16 @@
                     <br/>
                     <p:commandButton styleClass="buttonSmall"
                                      process="@this"
-                                     action="#{countryBean.selectCountry(c)}"
-                                     update="LineChart" value="CommandButton"
+                                     action="#{countryBean.selectCountry(country)}"
+                                     update="LineChart" value="p:CommandButton"
                                      style="background-color: darksalmon;border: none;box-shadow: none">
                     </p:commandButton>
                     <br/>
-                    <p:commandLink action="#{countryBean.selectCountry(c)}" value="CommandLink" styleClass="buttonSmall"/>
+                    <p:commandLink action="#{countryBean.selectCountry(c)}" value="p:CommandLink" styleClass="buttonSmall"/>
+                    <br/>
+                    <h:commandButton action="#{countryBean.selectCountry(country)}" styleClass="buttonSmall" value="h:commandButton"/>
+                    <br/>
+                    <h:commandLink action="#{countryBean.selectCountry(country)}" styleClass="buttonSmall" value="h:commandLink"/>
                 </h:form>
                 <br/>
                 <br/>

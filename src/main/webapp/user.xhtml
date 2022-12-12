@@ -40,7 +40,7 @@
             <div class="icon-text">
                 <i class="pi pi-user" style="font-size: 1.5rem"></i>
                 <h:form>
-                    <h:commandLink styleClass="navigation" action="#{userBean.logout}" value="Logout"/>
+                    <h:commandLink styleClass="navigation" action="profil" value="Profil"/>
                 </h:form>
             </div>
         </div>
@@ -114,6 +114,17 @@
                             </f:facet>
                             <f:facet name="input">
                                 <p:inputText value="#{c.y2017}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="2018">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{c.y2018}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{c.y2018}" />
                             </f:facet>
                         </p:cellEditor>
                     </p:column>

@@ -43,13 +43,14 @@ public class UserDAO {
         return "login";
     }
 
-    public static boolean validate(String mail, String passwort) {
+    public static User validate(String mail, String passwort) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
+        User validUser = null;
 
         try {
             con = DataConnect.getConnection();
-            ps = con.prepareStatement("Select mail, passwort from USER where mail = ? and passwort = ?");
+            ps = con.prepareStatement("Select anrede,vorname,nachname,firma,position,mail,passwort from USER where mail = ? and passwort = ?");
             ps.setString(1, mail);
             ps.setString(2, passwort);
 
@@ -57,13 +58,21 @@ public class UserDAO {
 
             if (rs.next()) {
                 //result found, means valid inputs
-                return true;
+                validUser = new User();
+                validUser.setAnrede(rs.getString("anrede"));
+                validUser.setVorname(rs.getString("vorname"));
+                validUser.setNachname(rs.getString("nachname"));
+                validUser.setFirma(rs.getString("firma"));
+                validUser.setPosition(rs.getString("position"));
+                validUser.setMail(rs.getString("mail"));
+                validUser.setPasswort(rs.getString("passwort"));
+                return validUser;
             }
         } catch (SQLException ex) {
             System.out.println("Login error -->" + ex.getMessage());
         } finally {
             DataConnect.close((org.mariadb.jdbc.Connection) con);
         }
-        return false;
+        return null;
     }
 }
