@@ -11,6 +11,16 @@
     display: flex;
     flex-direction: column;
 }
+button.ui-button, button.ui-button:hover {
+    background-color: darksalmon;
+    border: none;
+    box-shadow: none;
+    border-radius: 10px;
+
+    text-decoration: none;
+    font-size: 22px;
+
+}
 .button {
     display: flex;
     color: #FFFFFF;
@@ -113,6 +123,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    justify-content: flex-end;
 }
 .img_report {
     height: 15rem;

@@ -52,6 +52,7 @@ public class UserDAO {
                             "Die Registrierung ist fehlgeschlagen",
                             "Die Mailadresse existiert bereits"));
         }
+
         return "reg";
 
     }

@@ -44,119 +44,135 @@
                 </h:form>
             </div>
         </div>
+        <h:form>
+            <h:inputHidden value="#{messagesView.info()}"/>
+            <p:growl id="messages" showDetail="true" life="10000"/>
+        </h:form>
         <div class="frame" style="background-color: darkseagreen ;">
-            <h:form><h3 style="color: white">Hallo #{user.anrede} #{user.vorname} #{user.nachname}</h3></h:form>
-            <h1 style="color: white">CO2-Emissionen in Millionen Tonnen</h1>
-            <h:form id="form">
-                <p:growl id="msgs" showDetail="true"/>
-                <p:dataTable var="c" value="#{dtEditView.countryList}" reflow="true" rows="10" paginator="true"
-                             style="font-family: AppleGothic;font-size: 18px;" editable="true">
-
-                    <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs"/>
-                    <p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" update=":form:msgs"/>
-
-                    <p:column headerText="Kürzel">
-                        <h:outputText value="#{c.country_code}"/>
-                    </p:column>
-
-                    <p:column headerText="Name">
-                        <h:outputText value="#{c.country_name}"/>
-                    </p:column>
-
-                    <p:column headerText="1990">
-                        <p:cellEditor>
-                            <f:facet name="output">
-                                <h:outputText value="#{c.y1990}"/>
-                            </f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{c.y1990}" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-                    <p:column headerText="2000">
-                        <p:cellEditor>
-                            <f:facet name="output">
-                                <h:outputText value="#{c.y2000}"/>
-                            </f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{c.y2000}" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-                    <p:column headerText="2010">
-                        <p:cellEditor>
-                            <f:facet name="output">
-                                <h:outputText value="#{c.y2010}"/>
-                            </f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{c.y2010}" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-                    <p:column headerText="2015">
-                        <p:cellEditor>
-                            <f:facet name="output">
-                                <h:outputText value="#{c.y2015}"/>
-                            </f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{c.y2015}" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-                    <p:column headerText="2017">
-                        <p:cellEditor>
-                            <f:facet name="output">
-                                <h:outputText value="#{c.y2017}"/>
-                            </f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{c.y2017}" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-                    <p:column headerText="2018">
-                        <p:cellEditor>
-                            <f:facet name="output">
-                                <h:outputText value="#{c.y2018}" />
-                            </f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{c.y2018}" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-                    <p:column headerText="2019">
-                        <p:cellEditor>
-                            <f:facet name="output">
-                                <h:outputText value="#{c.y2019}"/>
-                            </f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{c.y2019}" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-                    <p:column headerText="2021">
-                        <p:cellEditor>
-                            <f:facet name="output">
-                                <h:outputText value="#{c.y2021}"/>
-                            </f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{c.y2021}" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-                    <p:column style="width:6rem">
-                        <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
-                    </p:column>
-
-                </p:dataTable>
+            <h:form>
+                <h2 style="color: white">Hallo #{user.anrede} #{user.vorname} #{user.nachname}</h2>
             </h:form>
+            <div style="background-color: #FFFFFF; border: solid white 2rem">
+                <div style="display: flex; justify-content: space-between">
+                    <div style="display: flex">
+                        <h2>O2-Emissionen in Millionen Tonnen</h2>
+                    </div>
+                    <div style="display: flex; align-items: center">
+                        <i class="pi pi-search" style="margin:4px 4px 4px 4px; font-size: 1.3rem; color: dimgrey"></i>
+                        <input type="text" style="height: 3rem"/>
+                    </div>
+                </div>
+                <h:form id="form">
+                    <p:growl id="msgs" showDetail="true"/>
+                    <p:dataTable var="c" value="#{dtEditView.countryList}" reflow="true" rows="10" paginator="true"
+                                 style="font-family: AppleGothic;font-size: 18px;" editable="true">
+
+                        <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs"/>
+                        <p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" update=":form:msgs"/>
+
+                        <p:column headerText="Kürzel">
+                            <h:outputText value="#{c.country_code}"/>
+                        </p:column>
+
+                        <p:column headerText="Name">
+                            <h:outputText value="#{c.country_name}"/>
+                        </p:column>
+
+                        <p:column headerText="1990">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{c.y1990}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{c.y1990}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="2000">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{c.y2000}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{c.y2000}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="2010">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{c.y2010}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{c.y2010}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="2015">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{c.y2015}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{c.y2015}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="2017">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{c.y2017}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{c.y2017}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="2018">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{c.y2018}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{c.y2018}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="2019">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{c.y2019}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{c.y2019}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="2021">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{c.y2021}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{c.y2021}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column style="width:6rem">
+                            <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+            </div>
         </div>
     </h:body>
 </f:view>

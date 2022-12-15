@@ -45,7 +45,15 @@
             </div>
         </div>
         <div class="frame">
-            <h1 style="color: black">CO2-Emissionen in Millionen Tonnen</h1>
+            <div style="display: flex; justify-content: space-between">
+                <div style="display: flex">
+                    <h2>O2-Emissionen in Millionen Tonnen</h2>
+                </div>
+                <div style="display: flex; align-items: center">
+                    <i class="pi pi-search" style="margin:4px 4px 4px 4px; font-size: 1.3rem; color: dimgrey"></i>
+                    <input type="text" style="height: 3rem"/>
+                </div>
+            </div>
             <h:form>
                 <p:dataTable var="c" value="#{dtEditView.countryList}" reflow="true" rows="10" paginator="true"
                              style="font-family: AppleGothic;font-size: 18px">

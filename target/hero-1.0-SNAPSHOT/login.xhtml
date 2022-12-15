@@ -56,7 +56,7 @@
                         <h:inputSecret id="pass" value="#{user.passwort}"/>
                         <br/>
                     </h:panelGrid>
-                    <h:commandLink styleClass="button" action="#{userBean.validateUsernamePassword}" value="Anmelden"/>
+                    <p:commandButton styleClass="button" action="#{userBean.validateUsernamePassword}" value="Anmelden"/>
                 </h:form>
             </div>
             <div class="frameLoginRight">
@@ -68,7 +68,7 @@
                     <i class="pi pi-check-circle" style="font-size: 1.5rem; color: darkseagreen"></i> Korrigieren von Datenfehlern<br/><br/>
                 </div>
                 <h:form>
-                    <h:commandLink styleClass="button" action="reg" value="Jetzt registrieren"/>
+                    <p:commandButton styleClass="button" action="reg" value="Jetzt registrieren"/>
                 </h:form>
             </div>
         </div>
