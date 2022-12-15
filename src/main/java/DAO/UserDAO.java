@@ -57,6 +57,15 @@ public class UserDAO {
 
     }
 
+    public void saveUser (User user) {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction t = em.getTransaction();
+        t.begin();
+        em.merge(user);
+        t.commit();
+        em.close();
+    }
+
     public static User validate(String mail, String passwort) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;

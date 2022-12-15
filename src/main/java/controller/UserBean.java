@@ -49,7 +49,7 @@ public class UserBean implements Serializable {
             return "user";
         } else {
             FacesContext.getCurrentInstance().addMessage(
-                    "loginMessage",
+                    "regInfo",
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Die eingegebene Mail oder das Passwort ist falsch",
                             "Bitte gib eine korrekte Mail oder Passwort ein")

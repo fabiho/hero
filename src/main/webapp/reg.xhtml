@@ -89,7 +89,9 @@
 
                     </h:panelGrid>
                     <br/>
-                    <h:commandLink styleClass="button" value="Account erstellen" action="#{userDAO.createUser(user)}"/>
+                    <div style="display: flex; justify-content: space-between">
+                        <h:commandLink styleClass="button" value="Account erstellen" action="#{userDAO.createUser(user)}"/>
+                    </div>
                 </h:form>
             </div>
         </div>

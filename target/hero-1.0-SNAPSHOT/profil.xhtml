@@ -46,7 +46,6 @@
         </div>
         <div class="frameLogin">
             <div class="frameReg">
-                <p:commandButton icon="pi pi-chevron-left" onclick="history.go(-1)"/>
                 <h1 style="color: white">Dein Profil</h1>
                 <h:form>
                     <h:panelGrid columns="2" style="color: #FFFFFF;font-size: 22px;width: fit-content">
@@ -73,8 +72,11 @@
                         <h:outputLabel value="#{user.passwort}"/>
 
                     </h:panelGrid>
-                    <br/>
-                    <p:commandButton styleClass="button" value="Logout" action="#{userBean.logout}"/>
+                </h:form>
+                <br/>
+                <h:form style="display: flex; justify-content: space-between">
+                    <h:commandLink styleClass="button" style="background-color: white; color: darksalmon" value="Bearbeiten" action="editprofil"/>
+                    <h:commandLink styleClass="button" value="Logout" action="#{userBean.logout}"/>
                 </h:form>
             </div>
         </div>

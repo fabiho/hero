@@ -53,115 +53,134 @@
                 <h2 style="color: white">Hallo #{user.anrede} #{user.vorname} #{user.nachname}</h2>
             </h:form>
             <div style="background-color: #FFFFFF; border: solid white 2rem">
-                <div style="display: flex; justify-content: space-between">
-                    <div style="display: flex">
-                        <h2>O2-Emissionen in Millionen Tonnen</h2>
-                    </div>
-                    <div style="display: flex; align-items: center">
-                        <i class="pi pi-search" style="margin:4px 4px 4px 4px; font-size: 1.3rem; color: dimgrey"></i>
-                        <input type="text" style="height: 3rem"/>
-                    </div>
-                </div>
+                <h2>O2-Emissionen in Millionen Tonnen</h2>
                 <h:form id="form">
                     <p:growl id="msgs" showDetail="true"/>
-                    <p:dataTable var="c" value="#{dtEditView.countryList}" reflow="true" rows="10" paginator="true"
-                                 style="font-family: AppleGothic;font-size: 18px;" editable="true">
+                    <p:dataTable var="c" value="#{dtEditView.countryList}" reflow="true" rows="10"
+                                 paginator="true" paginatorPosition="bottom"
+                                 style="font-family: AppleGothic;font-size: 18px;" editable="true" widgetVar="table"
+                                 globalFilterOnly="true">
 
                         <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs"/>
                         <p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" update=":form:msgs"/>
 
-                        <p:column headerText="Kürzel">
+                        <f:facet name="header">
+                            <div class="products-table-header">
+                                <span class="filter-container ui-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                    <p:inputText id="globalFilter" onkeyup="PF('table').filter()" placeholder="Suche"/>
+                                </span>
+                            </div>
+                        </f:facet>
+
+                        <p:column headerText="Kürzel" sortBy="#{c.country_code}" filterBy="#{c.country_code}">
                             <h:outputText value="#{c.country_code}"/>
                         </p:column>
 
-                        <p:column headerText="Name">
+                        <p:column headerText="Name" sortBy="#{c.country_name}" filterBy="#{c.country_name}">
                             <h:outputText value="#{c.country_name}"/>
                         </p:column>
 
-                        <p:column headerText="1990">
+                        <p:column headerText="1990" sortBy="#{c.y1990}">
                             <p:cellEditor>
                                 <f:facet name="output">
                                     <h:outputText value="#{c.y1990}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{c.y1990}" />
+                                    <p:inputText value="#{c.y1990}" validatorMessage="Hier sind nur Zahlen erlaubt">
+                                        <f:validateRegex pattern="[0-9]+[,][0-9]+"/>
+                                    </p:inputText>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column headerText="2000">
+                        <p:column headerText="2000" sortBy="#{c.y2000}">
                             <p:cellEditor>
                                 <f:facet name="output">
                                     <h:outputText value="#{c.y2000}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{c.y2000}" />
+                                    <p:inputText value="#{c.y2000}" validatorMessage="Hier sind nur Zahlen erlaubt">
+                                        <f:validateRegex pattern="[0-9]+[,][0-9]+"/>
+                                    </p:inputText>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column headerText="2010">
+                        <p:column headerText="2010" sortBy="#{c.y2010}">
                             <p:cellEditor>
                                 <f:facet name="output">
                                     <h:outputText value="#{c.y2010}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{c.y2010}" />
+                                    <p:inputText value="#{c.y2010}" validatorMessage="Hier sind nur Zahlen erlaubt">
+                                        <f:validateRegex pattern="[0-9]+[,][0-9]+"/>
+                                    </p:inputText>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column headerText="2015">
+                        <p:column headerText="2015" sortBy="#{c.y2015}">
                             <p:cellEditor>
                                 <f:facet name="output">
                                     <h:outputText value="#{c.y2015}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{c.y2015}" />
+                                    <p:inputText value="#{c.y2015}" validatorMessage="Hier sind nur Zahlen erlaubt">
+                                        <f:validateRegex pattern="[0-9]+[,][0-9]+"/>
+                                    </p:inputText>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column headerText="2017">
+                        <p:column headerText="2017" sortBy="#{c.y2017}">
                             <p:cellEditor>
                                 <f:facet name="output">
                                     <h:outputText value="#{c.y2017}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{c.y2017}" />
+                                    <p:inputText value="#{c.y2017}" validatorMessage="Hier sind nur Zahlen erlaubt">
+                                        <f:validateRegex pattern="[0-9]+[,][0-9]+"/>
+                                    </p:inputText>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column headerText="2018">
+                        <p:column headerText="2018" sortBy="#{c.y2018}">
                             <p:cellEditor>
                                 <f:facet name="output">
                                     <h:outputText value="#{c.y2018}" />
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{c.y2018}" />
+                                    <p:inputText value="#{c.y2018}" validatorMessage="Hier sind nur Zahlen erlaubt">
+                                        <f:validateRegex pattern="[0-9]+[,][0-9]+"/>
+                                    </p:inputText>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column headerText="2019">
+                        <p:column headerText="2019" sortBy="#{c.y2019}">
                             <p:cellEditor>
                                 <f:facet name="output">
                                     <h:outputText value="#{c.y2019}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{c.y2019}" />
+                                    <p:inputText value="#{c.y2019}" validatorMessage="Hier sind nur Zahlen erlaubt">
+                                        <f:validateRegex pattern="[0-9]+[,][0-9]+"/>
+                                    </p:inputText>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column headerText="2021">
+                        <p:column headerText="2021" sortBy="#{c.y2021}">
                             <p:cellEditor>
                                 <f:facet name="output">
                                     <h:outputText value="#{c.y2021}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{c.y2021}" />
+                                    <p:inputText value="#{c.y2021}" validatorMessage="Hier sind nur Zahlen erlaubt">
+                                        <f:validateRegex pattern="[0-9]+[,][0-9]+"/>
+                                    </p:inputText>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
