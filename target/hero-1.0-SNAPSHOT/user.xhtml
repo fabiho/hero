@@ -45,10 +45,10 @@
             </div>
         </div>
         <div class="frame" style="background-color: darkseagreen ;">
+            <h:form><h3 style="color: white">Hallo #{user.anrede} #{user.vorname} #{user.nachname}</h3></h:form>
             <h1 style="color: white">CO2-Emissionen in Millionen Tonnen</h1>
             <h:form id="form">
                 <p:growl id="msgs" showDetail="true"/>
-
                 <p:dataTable var="c" value="#{dtEditView.countryList}" reflow="true" rows="10" paginator="true"
                              style="font-family: AppleGothic;font-size: 18px;" editable="true">
 

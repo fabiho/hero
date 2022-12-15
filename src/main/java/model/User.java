@@ -1,9 +1,6 @@
 package model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -22,11 +19,11 @@ public class User implements Serializable {
     private String nachname;
     private String firma;
     private String position;
+    @Column(unique = true)
     private String mail;
     private String passwort;
 
     public User() {
-
     }
 
     // Gett + Setter

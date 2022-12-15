@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="frameLogin">
-            <p:growl id="reg-info" showDetail="true"/>
+            <p:growl id="regInfo" showDetail="true" life="10000"/>
             <div class="frameLoginLeft">
                 <h1 style="color: white">In Ihren Account einloggen</h1>
                 <h:form>
@@ -54,9 +54,7 @@
                         <h:inputText id="name" value="#{user.mail}"/>
                         <h:outputLabel value="Passwort:" for="pass"/>
                         <h:inputSecret id="pass" value="#{user.passwort}"/>
-                        <p:messages id="loginMessage">
-                            <p:autoUpdate/>
-                        </p:messages>
+                        <br/>
                     </h:panelGrid>
                     <h:commandLink styleClass="button" action="#{userBean.validateUsernamePassword}" value="Anmelden"/>
                 </h:form>

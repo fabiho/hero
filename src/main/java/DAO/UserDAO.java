@@ -27,20 +27,33 @@ public class UserDAO {
         return allUsers;
     }
 
-    public String createUser(User user) {
+    public String createUser(User user) throws Exception {
         EntityManager em = emf.createEntityManager();
         EntityTransaction t = em.getTransaction();
-        t.begin();
-        em.persist(user);
-        t.commit();
-        em.close();
-        FacesContext.getCurrentInstance().addMessage(
-                "reg-info",
-                new FacesMessage(FacesMessage.SEVERITY_INFO,
-                        "Die Registrierung war erfolgreich",
-                        "Melde dich jetzt direkt an")
-        );
-        return "login";
+
+        try {
+            t.begin();
+            em.persist(user);
+            t.commit();
+            em.close();
+            FacesContext.getCurrentInstance().addMessage(
+                    "regInfo",
+                    new FacesMessage(FacesMessage.SEVERITY_INFO,
+                            "Die Registrierung war erfolgreich",
+                            "Melde dich jetzt direkt an")
+            );
+            return "login";
+        } catch (Exception regException) {
+            System.out.println("Registration error -->" + regException.getMessage());
+
+            FacesContext.getCurrentInstance().addMessage(
+                    "regInfo",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Die Registrierung ist fehlgeschlagen",
+                            "Die Mailadresse existiert bereits"));
+        }
+        return "reg";
+
     }
 
     public static User validate(String mail, String passwort) throws SQLException {

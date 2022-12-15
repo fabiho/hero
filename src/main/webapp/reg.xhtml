@@ -46,6 +46,7 @@
         </div>
         <div class="frameLogin">
             <div class="frameReg">
+                <p:growl id="regInfo" showDetail="true" life="10000"/>
                 <h1 style="color: white">Registrierung</h1>
                 <h:form>
                     <h:panelGrid columns="3" style="color: #FFFFFF;font-size: 22px;width: fit-content">
@@ -75,7 +76,7 @@
                         <p:message for="position"/>
 
                         <h:outputLabel value="E-Mail Adresse: " for="mail"/>
-                        <h:inputText id="mail" value="#{user.mail}" required="true" requiredMessage="Pflichtfeld" validatorMessage="Bitte gib eine gültige Mailadresse ein">
+                        <h:inputText id="mail" value="#{user.mail}" required="true" requiredMessage="Pflichtfeld" validatorMessage="Bitte gib eine gültige Mailadresse ein" >
                             <f:validateRegex pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"/>
                         </h:inputText>
                         <p:message for="mail"/>
