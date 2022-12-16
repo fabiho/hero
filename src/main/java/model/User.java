@@ -2,12 +2,8 @@ package model;
 
 import jakarta.persistence.*;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import java.io.Serializable;
 
-@SessionScoped
-@Named
 @Entity
 public class User implements Serializable {
 

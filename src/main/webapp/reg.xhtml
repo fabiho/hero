@@ -15,32 +15,32 @@
         <div class="navbar">
             <h:form styleClass="titel">
                 <h:graphicImage value="img/co2_white.png"/>
-                <h:commandLink styleClass="titel" action="app" value="Like Hero to Zero"/>
+                <h:link styleClass="titel" outcome="infografiken" value="Like Hero to Zero"/>
             </h:form>
             <div class="navigationStructure">
                 <div class="icon-text">
                     <i class="pi pi-chart-line" style="font-size: 1.5rem"></i>
                     <h:form>
-                        <h:commandLink styleClass="navigation" action="app" value="Infografiken"/>
+                        <h:link styleClass="navigation" outcome="infografiken" value="Infografiken"/>
                     </h:form>
                 </div>
                 <div class="icon-text">
                     <i class="pi pi-database" style="font-size: 1.5rem"></i>
                     <h:form>
-                        <h:commandLink styleClass="navigation" action="data" value="Forschungsdaten"/>
+                        <h:link styleClass="navigation" outcome="data" value="Forschungsdaten"/>
                     </h:form>
                 </div>
                 <div class="icon-text">
                     <i class="pi pi-book" style="font-size: 1.5rem"></i>
                     <h:form>
-                        <h:commandLink styleClass="navigation" action="report" value="Reporte"/>
+                        <h:link styleClass="navigation" outcome="report" value="Reporte"/>
                     </h:form>
                 </div>
             </div>
             <div class="icon-text">
                 <i class="pi pi-user" style="font-size: 1.5rem"></i>
                 <h:form>
-                    <h:commandLink styleClass="navigationSelected" action="login" value="Login"/>
+                    <h:link styleClass="navigationSelected" outcome="login" value="Login"/>
                 </h:form>
             </div>
         </div>
@@ -90,6 +90,7 @@
                     </h:panelGrid>
                     <br/>
                     <div style="display: flex; justify-content: space-between">
+                        <h:link styleClass="button" style="background-color: white; color: darksalmon" value="Zurück" outcome="profil"/>
                         <h:commandLink styleClass="button" value="Account erstellen" action="#{userDAO.createUser(user)}"/>
                     </div>
                 </h:form>

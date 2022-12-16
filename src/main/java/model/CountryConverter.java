@@ -27,7 +27,6 @@ public class CountryConverter implements Converter {
                     return country;
                 }
             }
-
             return countries;
         }
 

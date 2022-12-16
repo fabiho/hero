@@ -1,41 +1,41 @@
 package DAO;
 
-import Login.DataConnect;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import model.User;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 @Named("userDAO")
+@ApplicationScoped
 public class UserDAO {
 
     private EntityManagerFactory emf =
             Persistence.createEntityManagerFactory("hero");
+    private EntityManager em;
+
+    @PostConstruct
+    public void initialize() {
+        em = emf.createEntityManager();
+    }
+
 
     public List<User> allUsers() {
-        EntityManager entityManager = emf.createEntityManager();
-        Query abfrage = entityManager.createQuery("select u from User u");
+        Query abfrage = em.createQuery("select u from User u");
         List<User> allUsers = abfrage.getResultList();
-        entityManager.close();
         return allUsers;
     }
 
+    @Transactional
     public String createUser(User user) throws Exception {
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction t = em.getTransaction();
-
         try {
-            t.begin();
             em.persist(user);
-            t.commit();
-            em.close();
             FacesContext.getCurrentInstance().addMessage(
                     "regInfo",
                     new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -57,45 +57,28 @@ public class UserDAO {
 
     }
 
+    @Transactional
     public void saveUser (User user) {
-        EntityManager em = emf.createEntityManager();
         EntityTransaction t = em.getTransaction();
         t.begin();
         em.merge(user);
         t.commit();
         em.close();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                "Änderung erfolgreich",
+                "Deine Profilinformationen wurde geändert"));
     }
 
-    public static User validate(String mail, String passwort) throws SQLException {
-        Connection con = null;
-        PreparedStatement ps = null;
-        User validUser = null;
-
+    public User findUser(String mail, String passwort) throws SQLException {
+        Query abfrage = em.createQuery("select u from User u where u.mail = :mail AND u.passwort = :passwort");
+        abfrage.setParameter("mail", mail);
+        abfrage.setParameter("passwort", passwort);
         try {
-            con = DataConnect.getConnection();
-            ps = con.prepareStatement("Select anrede,vorname,nachname,firma,position,mail,passwort from USER where mail = ? and passwort = ?");
-            ps.setString(1, mail);
-            ps.setString(2, passwort);
-
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                //result found, means valid inputs
-                validUser = new User();
-                validUser.setAnrede(rs.getString("anrede"));
-                validUser.setVorname(rs.getString("vorname"));
-                validUser.setNachname(rs.getString("nachname"));
-                validUser.setFirma(rs.getString("firma"));
-                validUser.setPosition(rs.getString("position"));
-                validUser.setMail(rs.getString("mail"));
-                validUser.setPasswort(rs.getString("passwort"));
-                return validUser;
-            }
-        } catch (SQLException ex) {
-            System.out.println("Login error -->" + ex.getMessage());
-        } finally {
-            DataConnect.close((org.mariadb.jdbc.Connection) con);
+            return (User) abfrage.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
         }
-        return null;
+
     }
+
 }

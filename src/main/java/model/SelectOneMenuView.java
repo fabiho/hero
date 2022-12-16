@@ -3,14 +3,14 @@ package model;
 import DAO.CountryDAO;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class SelectOneMenuView {
 
     private String selectedOption;

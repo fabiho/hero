@@ -1,31 +1,32 @@
 package Login;
 
-import model.User;
+import controller.UserBean;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 
 @Named
-@RequestScoped
-public class MessagesView {
+@ViewScoped
+public class MessagesView implements Serializable {
 
     private String anrede;
     private String vorname;
     private String nachname;
 
     @Inject
-    private User user;
+    private UserBean userBean;
 
     @PostConstruct
     public void init() {
 
-        anrede = user.getAnrede();
-        vorname = user.getVorname();
-        nachname = user.getNachname();
+        anrede = userBean.getUser().getAnrede();
+        vorname = userBean.getUser().getVorname();
+        nachname = userBean.getUser().getNachname();
 
     }
 

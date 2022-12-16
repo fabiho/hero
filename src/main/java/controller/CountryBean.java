@@ -14,6 +14,7 @@ public class CountryBean implements Serializable {
 
     private List <Country> selectedCountry = new ArrayList<>();
 
+
     public void selectCountry (Country country) {
         selectedCountry.clear();
         selectedCountry.add(country);
