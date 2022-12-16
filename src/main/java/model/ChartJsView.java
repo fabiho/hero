@@ -23,11 +23,9 @@ import org.primefaces.model.charts.polar.PolarAreaChartModel;
 import org.primefaces.model.charts.radar.RadarChartModel;
 import org.primefaces.model.charts.scatter.ScatterChartModel;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -53,31 +51,6 @@ public class ChartJsView implements Serializable {
     private DonutChartModel donutModel;
     private ScatterChartModel scatterModel;
 
-    @Inject
-    private Country country;
-
-    @PostConstruct
-    public void init() {
-        /*
-        createPieModel();
-        createPolarAreaModel();
-         */
-        createLineModel();
-        //createCartesianLinerModel();
-        createBarModel();
-        /*
-        createBarModel2();
-        createHorizontalBarModel();
-        createStackedBarModel();
-        createStackedGroupBarModel();
-        createRadarModel();
-        createRadarModel2();
-        createBubbleModel();
-        createMixedModel();
-        createDonutModel();
-        createScatterModel();
-         */
-    }
 
     /* Nicht verwendet
      *
@@ -142,11 +115,12 @@ public class ChartJsView implements Serializable {
     }
     */
 
-    public void createLineModel() {
+    public void createLineModel(Country country) {
         lineModel = new LineChartModel();
         ChartData data = new ChartData();
 
         LineChartDataSet dataSet = new LineChartDataSet();
+
         List<Object> values = new ArrayList<>();
         values.add(country.getY1990());
         values.add(country.getY1995());
@@ -157,7 +131,7 @@ public class ChartJsView implements Serializable {
         values.add(country.getY2019());
         dataSet.setData(values);
         dataSet.setFill(false);
-        //Hier muss das ausgewählte Land rein
+
         dataSet.setLabel(country.getCountry_name());
         dataSet.setBorderColor("rgb(75, 192, 192)");
         dataSet.setTension(0.1);
@@ -171,7 +145,6 @@ public class ChartJsView implements Serializable {
         labels.add("2010");
         labels.add("2015");
         labels.add("2019");
-        //Hier könnte man die Jahre als Label importieren
         data.setLabels(labels);
 
         //Options
@@ -292,21 +265,20 @@ public class ChartJsView implements Serializable {
     }
     */
 
-    public void createBarModel() {
+    public void createBarModel(Country country) {
         barModel = new BarChartModel();
         ChartData data = new ChartData();
 
         BarChartDataSet barDataSet = new BarChartDataSet();
-        barDataSet.setLabel("My First Dataset");
 
         List<Number> values = new ArrayList<>();
-        values.add(65);
-        values.add(59);
-        values.add(80);
-        values.add(81);
-        values.add(56);
-        values.add(55);
-        values.add(40);
+        values.add(country.getY1990());
+        values.add(country.getY1995());
+        values.add(country.getY2000());
+        values.add(country.getY2005());
+        values.add(country.getY2010());
+        values.add(country.getY2015());
+        values.add(country.getY2019());
         barDataSet.setData(values);
 
         List<String> bgColor = new ArrayList<>();
@@ -333,13 +305,13 @@ public class ChartJsView implements Serializable {
         data.addChartDataSet(barDataSet);
 
         List<String> labels = new ArrayList<>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("June");
-        labels.add("July");
+        labels.add("1990");
+        labels.add("1995");
+        labels.add("2000");
+        labels.add("2005");
+        labels.add("2010");
+        labels.add("2015");
+        labels.add("2019");
         data.setLabels(labels);
         barModel.setData(data);
 
@@ -355,12 +327,12 @@ public class ChartJsView implements Serializable {
         options.setScales(cScales);
 
         Title title = new Title();
-        title.setDisplay(true);
+        title.setDisplay(false);
         title.setText("Bar Chart");
         options.setTitle(title);
 
         Legend legend = new Legend();
-        legend.setDisplay(true);
+        legend.setDisplay(false);
         legend.setPosition("top");
         LegendLabel legendLabels = new LegendLabel();
         legendLabels.setFontStyle("italic");
@@ -923,6 +895,7 @@ public class ChartJsView implements Serializable {
         donutModel.setData(data);
     }
     */
+
 
     public void itemSelect(ItemSelectEvent event) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",

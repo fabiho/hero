@@ -12,10 +12,8 @@ import java.util.List;
 public class CountryConverter implements Converter {
 
     @Override
-    public Object getAsObject(FacesContext context,
-                              UIComponent component,
-                              String value) {
-        //prepare your datasource ex. EJB .. etc
+    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+
         if (value.trim().equals("")) {
             return null;
         } else {
@@ -33,9 +31,8 @@ public class CountryConverter implements Converter {
     }
 
     @Override
-    public String getAsString(FacesContext context,
-                              UIComponent component,
-                              Object value)   {
+    public String getAsString(FacesContext context, UIComponent component, Object value)   {
+
         if (value == null || value.equals("")) {
             return "";
         } else {

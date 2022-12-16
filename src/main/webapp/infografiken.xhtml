@@ -54,46 +54,58 @@
             <div class="frame">
                 <h1 style="color: black">CO2-Emissionen pro Land in den Jahren 1990 bis 2020</h1>
                 <h3 style="color: black">(in Millionen Tonnen)</h3>
-                <h:outputLabel value="Land: " for="selectCountry"/>
+                <h:outputLabel value="Land: " for="selectCountryLineChart"/>
                 <h:form>
-                    <p:growl id="regInfo" showDetail="true" life="10000"/>
-                    <p:selectOneMenu id="selectCountry"
-                                     panelStyle="width:180px" effect="fade" value="#{selectOneMenuView.country}"
-                                     filter="true" filterMatchMode="startsWith" converter="countryConverter" >
-
-                        <f:selectItem itemLabel="Auswählen" itemValue="" noSelectionOption="true"/>
-                        <f:selectItems value="#{selectOneMenuView.countries}" var="country"
-                                       itemLabel="#{country.country_name}" itemValue="#{country}">
+                    <p:selectOneMenu id="selectCountryLineChart"
+                                     panelStyle="width:180px" effect="fade" value="#{countryBean.selectedCountryCode}"
+                                     filter="true" filterMatchMode="startsWith"  >
+                        <f:selectItems value="#{countryBean.countries}" var="country"
+                                       itemLabel="#{country.country_name}" itemValue="#{country.country_code}">
                         </f:selectItems>
+                        <f:ajax render="@this :LineChart" listener="#{countryBean.onChange()}"></f:ajax>
 
                         <f:facet name="footer">
-                            <h:outputText value="#{selectOneMenuView.countries.size()} Länder"
+                            <h:outputText value="#{countryBean.countries.size()} Länder"
                                           style="font-weight:bold;" styleClass="py-1 block"/>
                         </f:facet>
                     </p:selectOneMenu>
                     <br/>
                     <br/>
-                    <p:commandButton styleClass="buttonSmall"
-                                     process="@this"
-                                     action="#{countryBean.selectCountry(country)}"
-                                     update="LineChart" value="p:CommandButton"
-                                     style="background-color: darksalmon;border: none;box-shadow: none">
-                    </p:commandButton>
-                    <br/>
-                    <p:commandLink action="#{countryBean.selectCountry(c)}" value="p:CommandLink" styleClass="buttonSmall"/>
-                    <br/>
-                    <h:commandButton action="#{countryBean.selectCountry(country)}" styleClass="buttonSmall" value="h:commandButton"/>
-                    <br/>
-                    <h:commandLink action="#{countryBean.selectCountry(country)}" styleClass="buttonSmall" value="h:commandLink"/>
+
                 </h:form>
                 <br/>
                 <br/>
-                <h:panelGroup layout="block" id="LineChart">
-                    <p:lineChart model="#{chartJsView.lineModel}" style="width: 100%; height: 500px;"/>
+                <h:panelGroup layout="block" id="LineChart" style="display: flex; justify-content: space-between">
+                    <p:lineChart model="#{chartJsView.lineModel}" style="width: 100%; height: 500px;display: flex"/>
                 </h:panelGroup>
             </div>
             <div class="frame">
-                <p:barChart model="#{chartJsView.barModel}" style="width: 100%; height: 500px;"/>
+                <h1 style="color: black">CO2-Emissionen pro Land in den Jahren 1990 bis 2020</h1>
+                <h3 style="color: black">(in Millionen Tonnen)</h3>
+                <h:outputLabel value="Land: " for="selectCountryBarChart"/>
+                <h:form>
+                    <p:selectOneMenu id="selectCountryBarChart"
+                                     panelStyle="width:180px" effect="fade" value="#{countryBean.selectedCountryCode}"
+                                     filter="true" filterMatchMode="startsWith"  >
+                        <f:selectItems value="#{countryBean.countries}" var="country"
+                                       itemLabel="#{country.country_name}" itemValue="#{country.country_code}">
+                        </f:selectItems>
+                        <f:ajax render="@this :BarChart" listener="#{countryBean.onChange()}"></f:ajax>
+
+                        <f:facet name="footer">
+                            <h:outputText value="#{countryBean.countries.size()} Länder"
+                                          style="font-weight:bold;" styleClass="py-1 block"/>
+                        </f:facet>
+                    </p:selectOneMenu>
+                    <br/>
+                    <br/>
+
+                </h:form>
+                <br/>
+                <br/>
+                <h:panelGroup layout="block" id="BarChart" style="display: flex; justify-content: space-between">
+                    <p:barChart model="#{chartJsView.barModel}" style="width: 100%; height: 500px;display: flex"/>
+                </h:panelGroup>
             </div>
         </div>
     </h:body>

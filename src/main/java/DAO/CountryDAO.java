@@ -3,10 +3,12 @@ package DAO;
 import jakarta.persistence.*;
 import model.Country;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import java.util.List;
 
 @Named
+@ApplicationScoped
 public class CountryDAO {
 
     private EntityManagerFactory emf =
