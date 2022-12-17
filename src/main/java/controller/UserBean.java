@@ -1,7 +1,7 @@
 package controller;
 
 import DAO.UserDAO;
-import Login.SessionUtils;
+import Service.SessionUtils;
 import Entity.User;
 
 import javax.annotation.PostConstruct;
