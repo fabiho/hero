@@ -1,7 +1,7 @@
 package DAO;
 
 import jakarta.persistence.*;
-import model.Country;
+import Entity.Country;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;

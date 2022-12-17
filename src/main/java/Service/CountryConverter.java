@@ -1,6 +1,7 @@
-package model;
+package Service;
 
 import DAO.CountryDAO;
+import Entity.Country;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

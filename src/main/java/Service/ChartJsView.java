@@ -1,5 +1,6 @@
-package model;
+package Service;
 
+import Entity.Country;
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.charts.ChartData;
 import org.primefaces.model.charts.axes.cartesian.CartesianScales;

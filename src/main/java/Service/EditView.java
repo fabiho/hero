@@ -1,6 +1,7 @@
-package model;
+package Service;
 
 import DAO.CountryDAO;
+import Entity.Country;
 import org.primefaces.event.RowEditEvent;
 
 import javax.annotation.PostConstruct;

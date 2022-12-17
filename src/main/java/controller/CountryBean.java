@@ -1,8 +1,8 @@
 package controller;
 
 import DAO.CountryDAO;
-import model.ChartJsView;
-import model.Country;
+import Service.ChartJsView;
+import Entity.Country;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;

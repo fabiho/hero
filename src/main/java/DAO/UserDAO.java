@@ -2,7 +2,7 @@ package DAO;
 
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
-import model.User;
+import Entity.User;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -12,7 +12,7 @@ import javax.inject.Named;
 import java.sql.SQLException;
 import java.util.List;
 
-@Named("userDAO")
+@Named
 @ApplicationScoped
 public class UserDAO {
 

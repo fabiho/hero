@@ -2,7 +2,7 @@ package controller;
 
 import DAO.UserDAO;
 import Login.SessionUtils;
-import model.User;
+import Entity.User;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
