@@ -2,7 +2,9 @@ package DAO;
 
 import jakarta.persistence.*;
 import Entity.Country;
+import jakarta.transaction.Transactional;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import java.util.List;
@@ -13,23 +15,25 @@ public class CountryDAO {
 
     private EntityManagerFactory emf =
             Persistence.createEntityManagerFactory("hero");
+    private EntityManager em;
+
+    @PostConstruct
+    public void initialize() {
+        em = emf.createEntityManager();
+    }
 
     public List<Country> findAll() {
-        EntityManager entityManager = emf.createEntityManager();
-        Query abfrage = entityManager.createQuery("select c from Country c");
+        Query abfrage = em.createQuery("select c from Country c");
         List<Country> allCountry = abfrage.getResultList();
-        entityManager.close();
         return allCountry;
     }
 
-
+    @Transactional
     public void saveCountry (Country country) {
-        EntityManager em = emf.createEntityManager();
         EntityTransaction t = em.getTransaction();
         t.begin();
         em.merge(country);
         t.commit();
-        em.close();
     }
 
 

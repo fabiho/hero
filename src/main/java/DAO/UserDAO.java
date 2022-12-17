@@ -63,7 +63,6 @@ public class UserDAO {
         t.begin();
         em.merge(user);
         t.commit();
-        em.close();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                 "Änderung erfolgreich",
                 "Deine Profilinformationen wurde geändert"));
