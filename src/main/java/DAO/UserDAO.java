@@ -1,8 +1,8 @@
 package DAO;
 
+import Entity.User;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
-import Entity.User;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -30,6 +30,18 @@ public class UserDAO {
         Query abfrage = em.createQuery("select u from User u");
         List<User> allUsers = abfrage.getResultList();
         return allUsers;
+    }
+
+    public User findUser(String mail, String passwort) throws SQLException {
+        Query abfrage = em.createQuery("select u from User u where u.mail = :mail AND u.passwort = :passwort");
+        abfrage.setParameter("mail", mail);
+        abfrage.setParameter("passwort", passwort);
+        try {
+            return (User) abfrage.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+
     }
 
     @Transactional
@@ -66,18 +78,6 @@ public class UserDAO {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                 "Änderung erfolgreich",
                 "Deine Profilinformationen wurde geändert"));
-    }
-
-    public User findUser(String mail, String passwort) throws SQLException {
-        Query abfrage = em.createQuery("select u from User u where u.mail = :mail AND u.passwort = :passwort");
-        abfrage.setParameter("mail", mail);
-        abfrage.setParameter("passwort", passwort);
-        try {
-            return (User) abfrage.getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
-
     }
 
 }

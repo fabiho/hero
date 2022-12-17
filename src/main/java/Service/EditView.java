@@ -19,7 +19,6 @@ public class EditView implements Serializable {
 
     private List<Country> countryList;
 
-
     @Inject
     private CountryDAO service;
 
@@ -29,6 +28,18 @@ public class EditView implements Serializable {
 
     }
 
+    public void onRowEdit(RowEditEvent<Country> event) {
+        FacesMessage msg = new FacesMessage("Land gespeichert",
+                String.valueOf(event.getObject().getCountry_name()));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        service.saveCountry(event.getObject());
+    }
+
+    public void onRowCancel(RowEditEvent<Country> event) {
+        FacesMessage msg = new FacesMessage("Bearbeitung abgebrochen",
+                String.valueOf(event.getObject().getCountry_name()));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 
     // Getter + Setter
     public List<Country> getCountryList() {
@@ -42,20 +53,6 @@ public class EditView implements Serializable {
     }
     public void setService(CountryDAO service) {
         this.service = service;
-    }
-
-
-    public void onRowEdit(RowEditEvent<Country> event) {
-        FacesMessage msg = new FacesMessage("Land gespeichert",
-                String.valueOf(event.getObject().getCountry_name()));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        service.saveCountry(event.getObject());
-    }
-
-    public void onRowCancel(RowEditEvent<Country> event) {
-        FacesMessage msg = new FacesMessage("Bearbeitung abgebrochen",
-                String.valueOf(event.getObject().getCountry_name()));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
 }

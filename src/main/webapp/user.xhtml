@@ -56,7 +56,7 @@
                 <h2>O2-Emissionen in Millionen Tonnen</h2>
                 <h:form id="form">
                     <p:growl id="msgs" showDetail="true"/>
-                    <p:dataTable var="c" value="#{dtEditView.countryList}" reflow="true" rows="10"
+                    <p:dataTable var="c" value="#{dtEditView.countryList}" reflow="true" rows="12"
                                  paginator="true" paginatorPosition="bottom"
                                  style="font-family: AppleGothic;font-size: 18px;" editable="true" widgetVar="table"
                                  globalFilterOnly="true">
@@ -87,7 +87,7 @@
                                     <h:outputText value="#{c.y1990}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputNumber value="#{c.y1990}"/>
+                                    <p:inputNumber value="#{c.y1990}" decimalPlaces="6"/>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
@@ -98,7 +98,7 @@
                                     <h:outputText value="#{c.y2000}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputNumber value="#{c.y2000}"/>
+                                    <p:inputNumber value="#{c.y2000}" decimalPlaces="6"/>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
@@ -109,7 +109,7 @@
                                     <h:outputText value="#{c.y2010}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputNumber value="#{c.y2010}"/>
+                                    <p:inputNumber value="#{c.y2010}" decimalPlaces="6"/>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
@@ -120,7 +120,7 @@
                                     <h:outputText value="#{c.y2015}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputNumber value="#{c.y2015}"/>
+                                    <p:inputNumber value="#{c.y2015}" decimalPlaces="6"/>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
@@ -131,7 +131,7 @@
                                     <h:outputText value="#{c.y2017}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputNumber value="#{c.y2017}"/>
+                                    <p:inputNumber value="#{c.y2017}" decimalPlaces="6"/>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
@@ -142,7 +142,7 @@
                                     <h:outputText value="#{c.y2018}" />
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputNumber value="#{c.y2018}"/>
+                                    <p:inputNumber value="#{c.y2018}" decimalPlaces="6"/>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
@@ -153,7 +153,7 @@
                                     <h:outputText value="#{c.y2019}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputNumber value="#{c.y2019}"/>
+                                    <p:inputNumber value="#{c.y2019}" decimalPlaces="6"/>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
@@ -164,7 +164,7 @@
                                     <h:outputText value="#{c.y2021}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputNumber value="#{c.y2021}"/>
+                                    <p:inputNumber value="#{c.y2021}" decimalPlaces="6"/>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>

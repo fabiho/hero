@@ -14,9 +14,7 @@ import java.io.Serializable;
 @ViewScoped
 public class MessagesView implements Serializable {
 
-    private String anrede;
     private String vorname;
-    private String nachname;
 
     @Inject
     private UserBean userBean;
@@ -24,9 +22,7 @@ public class MessagesView implements Serializable {
     @PostConstruct
     public void init() {
 
-        anrede = userBean.getUser().getAnrede();
         vorname = userBean.getUser().getVorname();
-        nachname = userBean.getUser().getNachname();
 
     }
 

@@ -20,9 +20,7 @@ public class UserBean implements Serializable {
 
     private String mail;
     private String passwort;
-
     private static Boolean isLoggedIn = false;
-
     private User user;
 
     @Inject
@@ -53,7 +51,6 @@ public class UserBean implements Serializable {
         }
     }
 
-    //logout event, invalidate session
     public String logout() {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();

@@ -46,19 +46,15 @@ public class CountryBean implements Serializable {
     public Country getSelectedCountry() {
         return selectedCountry;
     }
-
     public void setSelectedCountry(Country selectedCountry) {
         this.selectedCountry = selectedCountry;
     }
-
     public String getSelectedCountryCode() {
         return selectedCountryCode;
     }
-
     public void setSelectedCountryCode(String selectedCountryCode) {
         this.selectedCountryCode = selectedCountryCode;
     }
-
     public List<Country> getCountries() {
         return countries;
     }
