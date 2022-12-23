@@ -21,14 +21,13 @@ public class UserBean implements Serializable {
     private String mail;
     private String passwort;
     private static Boolean isLoggedIn = false;
-    private User user;
+    private User user = new User();
 
     @Inject
     private UserDAO userDAO;
 
     @PostConstruct
     public void init() {
-
     }
 
     //validate Login
@@ -55,7 +54,7 @@ public class UserBean implements Serializable {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
         setIsLoggedIn(false);
-        return "login";
+        return "login?faces-redirect=true";
     }
 
     public boolean isLoggedIn(){

@@ -51,7 +51,7 @@
                 <h:form>
                     <h:panelGrid columns="3" style="color: #FFFFFF;font-size: 22px;width: fit-content">
                         <h:outputLabel value="Anrede: " for="anrede"/>
-                        <h:selectOneMenu id="anrede" required="true" requiredMessage="Pflichtfeld" value="#{user.anrede}">
+                        <h:selectOneMenu id="anrede" required="true" requiredMessage="Pflichtfeld" value="#{userBean.user.anrede}">
                             <f:selectItem itemLabel="Wähle eine Anrede" itemValue=""/>
                             <f:selectItem itemLabel="Herr" itemValue="Herr"/>
                             <f:selectItem itemLabel="Frau" itemValue="Frau"/>
@@ -60,29 +60,29 @@
                         <p:message for="anrede"/>
 
                         <h:outputLabel value="Vorname: " for="vorname"/>
-                        <h:inputText id="vorname" value="#{user.vorname}" required="true" requiredMessage="Pflichtfeld"/>
+                        <h:inputText id="vorname" value="#{userBean.user.vorname}" required="true" requiredMessage="Pflichtfeld"/>
                         <p:message for="vorname"/>
 
                         <h:outputLabel value="Nachname: " for="name"/>
-                        <h:inputText id="name" value="#{user.nachname}" required="true" requiredMessage="Pflichtfeld"/>
+                        <h:inputText id="name" value="#{userBean.user.nachname}" required="true" requiredMessage="Pflichtfeld"/>
                         <p:message for="name"/>
 
                         <h:outputLabel value="Firma / Institut: " for="firma"/>
-                        <h:inputText id="firma" value="#{user.firma}"/>
+                        <h:inputText id="firma" value="#{userBean.user.firma}"/>
                         <p:message for="firma"/>
 
                         <h:outputLabel value="Position: " for="position"/>
-                        <h:inputText id="position" value="#{user.position}"/>
+                        <h:inputText id="position" value="#{userBean.user.position}"/>
                         <p:message for="position"/>
 
                         <h:outputLabel value="E-Mail Adresse: " for="mail"/>
-                        <h:inputText id="mail" value="#{user.mail}" required="true" requiredMessage="Pflichtfeld" validatorMessage="Bitte gib eine gültige Mailadresse ein" >
+                        <h:inputText id="mail" value="#{userBean.user.mail}" required="true" requiredMessage="Pflichtfeld" validatorMessage="Bitte gib eine gültige Mailadresse ein" >
                             <f:validateRegex pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"/>
                         </h:inputText>
                         <p:message for="mail"/>
 
                         <h:outputLabel value="Passwort: " for="passwort"/>
-                        <h:inputSecret id="passwort" value="#{user.passwort}" required="true" requiredMessage="Pflichtfeld" validatorMessage="Das Passwort muss mindest 8 Zeichen lang sein">
+                        <h:inputSecret id="passwort" value="#{userBean.user.passwort}" required="true" requiredMessage="Pflichtfeld" validatorMessage="Das Passwort muss mindest 8 Zeichen lang sein">
                                 <f:validateLength minimum="8"/>
                         </h:inputSecret>
                         <p:message for="passwort"/>
@@ -91,7 +91,7 @@
                     <br/>
                     <div style="display: flex; justify-content: space-between">
                         <h:link styleClass="button" style="background-color: white; color: darksalmon" value="Zurück" outcome="login"/>
-                        <h:commandLink styleClass="button" value="Account erstellen" action="#{userDAO.createUser(user)}"/>
+                        <h:commandLink styleClass="button" value="Account erstellen" action="#{userDAO.createUser(userBean.user)}"/>
                     </div>
                 </h:form>
             </div>

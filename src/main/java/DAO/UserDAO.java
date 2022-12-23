@@ -1,6 +1,7 @@
 package DAO;
 
 import Entity.User;
+import Service.SessionUtils;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 
@@ -9,6 +10,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -47,7 +49,14 @@ public class UserDAO {
     @Transactional
     public String createUser(User user) throws Exception {
         try {
+            EntityTransaction t = em.getTransaction();
+            t.begin();
             em.persist(user);
+            t.commit();
+
+            HttpSession session = SessionUtils.getSession();
+            session.invalidate();
+
             FacesContext.getCurrentInstance().addMessage(
                     "regInfo",
                     new FacesMessage(FacesMessage.SEVERITY_INFO,

@@ -1,8 +1,8 @@
 package Entity;
 
 import jakarta.persistence.*;
-
 import java.io.Serializable;
+
 
 @Entity
 public class User implements Serializable {
@@ -71,4 +71,5 @@ public class User implements Serializable {
     public void setPasswort(String passwort) {
         this.passwort = passwort;
     }
-   }
+}
+
